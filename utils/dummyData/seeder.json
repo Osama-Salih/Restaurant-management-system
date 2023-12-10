@@ -1,0 +1,462 @@
+[
+  {
+    "name": "Al Baik",
+    "location": {
+      "type": "Point",
+      "coordinates": [46.623735, 24.588878]
+    },
+    "description": "Famous for its fried chicken.",
+    "cuisineType": "Fast Food",
+    "phone": "0539284291",
+    "ratingsAverage": 4.5,
+    "ratingsQuantity": 0,
+    "imageCover": "albaik.jpg",
+    "openingHours": [
+      { "dayOfWeek": "Monday", "startTime": "9:00 AM", "endTime": "01:00 AM" },
+      {
+        "dayOfWeek": "Tuesday",
+        "startTime": "9:00 AM",
+        "endTime": "02:00 AM"
+      },
+      {
+        "dayOfWeek": "Wednesday",
+        "startTime": "9:00 AM",
+        "endTime": "02:00 AM"
+      },
+      {
+        "dayOfWeek": "Thursday",
+        "startTime": "9:00 AM",
+        "endTime": "02:00 AM"
+      },
+      {
+        "dayOfWeek": "Friday",
+        "startTime": "9:00 AM",
+        "endTime": "02:00 AM"
+      },
+      {
+        "dayOfWeek": "Saturday",
+        "startTime": "9:00 AM",
+        "endTime": "02:00 AM"
+      },
+      {
+        "dayOfWeek": "Sunday",
+        "startTime": "9:00 AM",
+        "endTime": "02:00 AM"
+      }
+    ]
+  },
+  {
+    "name": "Sultan's Steak House",
+    "location": {
+      "type": "Point",
+      "coordinates": [46.614097, 24.75028]
+    },
+    "description": "This upscale restaurant serves steak dishes in a spacious, elegant setting featuring floor-to-ceiling windows..",
+    "cuisineType": "Steakhouse",
+    "phone": "0555633706",
+    "ratingsAverage": 4.6,
+    "ratingsQuantity": 0,
+    "imageCover": "riyadhsteakhouse.jpg",
+    "openingHours": [
+      { "dayOfWeek": "Monday", "startTime": "1:00 AM", "endTime": "02:00 AM" },
+      {
+        "dayOfWeek": "Tuesday",
+        "startTime": "1:00 AM",
+        "endTime": "02:00 AM"
+      },
+      {
+        "dayOfWeek": "Wednesday",
+        "startTime": "1:00 AM",
+        "endTime": "02:00 AM"
+      },
+      {
+        "dayOfWeek": "Thursday",
+        "startTime": "1:00 AM",
+        "endTime": "02:00 AM"
+      },
+      {
+        "dayOfWeek": "Friday",
+        "startTime": "1:00 AM",
+        "endTime": "02:00 AM"
+      },
+      {
+        "dayOfWeek": "Saturday",
+        "startTime": "1:00 AM",
+        "endTime": "02:00 AM"
+      },
+      {
+        "dayOfWeek": "Sunday",
+        "startTime": "1:00 AM",
+        "endTime": "02:00 AM"
+      }
+    ]
+  },
+  {
+    "name": "Half Million Coffee",
+    "location": {
+      "type": "Point",
+      "coordinates": [46.648868, 24.733177]
+    },
+    "description": "A cozy café with a casual drinks menu and serving sandwiches, bagels and baked goods.",
+    "cuisineType": "Cafe",
+    "phone": "0539284291",
+    "ratingsAverage": 4.9,
+    "ratingsQuantity": 0,
+    "imageCover": "helfMillioncoffee.jpg",
+    "openingHours": [
+      { "dayOfWeek": "Monday", "startTime": "06:00 AM", "endTime": "12:30 AM" },
+      {
+        "dayOfWeek": "Tuesday",
+        "startTime": "06:00 AM",
+        "endTime": "12:30 AM"
+      },
+      {
+        "dayOfWeek": "Wednesday",
+        "startTime": "06:00 AM",
+        "endTime": "12:30 AM"
+      },
+      {
+        "dayOfWeek": "Thursday",
+        "startTime": "06:00 AM",
+        "endTime": "12:30 AM"
+      },
+      {
+        "dayOfWeek": "Friday",
+        "startTime": "06:00 AM",
+        "endTime": "12:30 AM"
+      },
+      {
+        "dayOfWeek": "Saturday",
+        "startTime": "06:00 AM",
+        "endTime": "12:30 AM"
+      },
+      {
+        "dayOfWeek": "Sunday",
+        "startTime": "06:00 AM",
+        "endTime": "12:30 AM"
+      }
+    ]
+  },
+  {
+    "name": "Shawarmer",
+    "location": {
+      "type": "Point",
+      "coordinates": [46.742879, 24.7611]
+    },
+    "description": "a Middle Eastern quick-service restaurant chain specializing in Shawarma.",
+    "cuisineType": "street food ",
+    "phone": "0539284291",
+    "ratingsAverage": 4.5,
+    "ratingsQuantity": 0,
+    "imageCover": "shawarmer.jpg",
+    "openingHours": [
+      { "dayOfWeek": "Monday", "startTime": "10:00 AM", "endTime": "02:00 AM" },
+      {
+        "dayOfWeek": "Tuesday",
+        "startTime": "10:00 AM",
+        "endTime": "02:00 AM"
+      },
+      {
+        "dayOfWeek": "Wednesday",
+        "startTime": "10:00 AM",
+        "endTime": "02:00 AM"
+      },
+      {
+        "dayOfWeek": "Thursday",
+        "startTime": "10:00 AM",
+        "endTime": "02:00 AM"
+      },
+      {
+        "dayOfWeek": "Friday",
+        "startTime": "10:00 AM",
+        "endTime": "02:00 AM"
+      },
+      {
+        "dayOfWeek": "Saturday",
+        "startTime": "10:00 AM",
+        "endTime": "02:00 AM"
+      },
+      {
+        "dayOfWeek": "Sunday",
+        "startTime": "10:00 AM",
+        "endTime": "02:00 AM"
+      }
+    ]
+  },
+  {
+    "name": "Baytsheabiaat",
+    "location": {
+      "type": "Point",
+      "coordinates": [46.679414, 24.585639]
+    },
+    "description": "Shaabiyat House offers an atmosphere of hospitality and generosity and a variety of delicious dishes with an authentic Yemeni taste.",
+    "cuisineType": "Sushi",
+    "phone": "0552281405",
+    "ratingsAverage": 4.3,
+    "ratingsQuantity": 0,
+    "imageCover": "riyadhsushi.jpg",
+    "openingHours": [
+      { "dayOfWeek": "Monday", "startTime": "5:00 AM", "endTime": "11:30 AM" },
+      {
+        "dayOfWeek": "Tuesday",
+        "startTime": "5:00 AM",
+        "endTime": "11:30 AM"
+      },
+      {
+        "dayOfWeek": "Wednesday",
+        "startTime": "5:00 AM",
+        "endTime": "11:30 AM"
+      },
+      {
+        "dayOfWeek": "Thursday",
+        "startTime": "5:00 AM",
+        "endTime": "11:30 AM"
+      },
+      {
+        "dayOfWeek": "Friday",
+        "startTime": "5:00 AM",
+        "endTime": "11:30 AM"
+      },
+      {
+        "dayOfWeek": "Saturday",
+        "startTime": "5:00 AM",
+        "endTime": "11:30 AM"
+      },
+      {
+        "dayOfWeek": "Sunday",
+        "startTime": "5:00 AM",
+        "endTime": "11:30 AM"
+      }
+    ]
+  },
+  {
+    "name": "Cinnabon",
+    "location": {
+      "type": "Point",
+      "coordinates": [46.658017, 24.743676]
+    },
+    "description": "Cinnabon is a restaurant in Saudi Arabia that serves dishes from the cuisine to sweets",
+    "cuisineType": "sweets",
+    "phone": "0556665786",
+    "ratingsAverage": 4.6,
+    "ratingsQuantity": 0,
+    "imageCover": "cinnabon.jpg",
+    "openingHours": [
+      { "dayOfWeek": "Monday", "startTime": "10:00 AM", "endTime": "12:00 AM" },
+      {
+        "dayOfWeek": "Tuesday",
+        "startTime": "10:00 AM",
+        "endTime": "12:00 AM"
+      },
+      {
+        "dayOfWeek": "Wednesday",
+        "startTime": "10:00 AM",
+        "endTime": "12:00 AM"
+      },
+      {
+        "dayOfWeek": "Thursday",
+        "startTime": "10:00 AM",
+        "endTime": "12:00 AM"
+      },
+      {
+        "dayOfWeek": "Friday",
+        "startTime": "10:00 AM",
+        "endTime": "12:00 AM"
+      },
+      {
+        "dayOfWeek": "Saturday",
+        "startTime": "10:00 AM",
+        "endTime": "12:00 AM"
+      },
+      {
+        "dayOfWeek": "Sunday",
+        "startTime": "10:00 AM",
+        "endTime": "12:00 AM"
+      }
+    ]
+  },
+  {
+    "name": "Diet Center",
+    "location": {
+      "type": "Point",
+      "coordinates": [46.788582, 24.721178]
+    },
+    "description": "A new plan aims to choose many nutrients from Austrian vegetables and cover your protein needs",
+    "cuisineType": "Diet",
+    "phone": "0539284291",
+    "ratingsAverage": 4.3,
+    "ratingsQuantity": 0,
+    "imageCover": "dietCenter.jpg",
+    "openingHours": [
+      { "dayOfWeek": "Monday", "startTime": "8:00 AM", "endTime": "11:00 PM" },
+      {
+        "dayOfWeek": "Tuesday",
+        "startTime": "8:00  AM",
+        "endTime": "11:00 PM"
+      },
+      {
+        "dayOfWeek": "Wednesday",
+        "startTime": "8:00  AM",
+        "endTime": "11:00 PM"
+      },
+      {
+        "dayOfWeek": "Thursday",
+        "startTime": "8:00  AM",
+        "endTime": "11:00 PM"
+      },
+      {
+        "dayOfWeek": "Friday",
+        "startTime": "1:00 PM",
+        "endTime": "11:00 PM"
+      },
+      {
+        "dayOfWeek": "Saturday",
+        "startTime": "8:00 AM",
+        "endTime": "11:00 PM"
+      },
+      {
+        "dayOfWeek": "Sunday",
+        "startTime": "8:00 AM",
+        "endTime": "11:00 PM"
+      }
+    ]
+  },
+  {
+    "name": "Shawait alkhalij",
+    "location": {
+      "type": "Point",
+      "coordinates": [46.759405, 24.807644]
+    },
+    "description": "Traditional dishes such as chicken and rice are served in a simple space characterized by functional décor.",
+    "cuisineType": "Arabic",
+    "phone": "0539284291",
+    "ratingsAverage": 4.5,
+    "ratingsQuantity": 0,
+    "imageCover": "shawaitAlkhalij.jpg",
+    "openingHours": [
+      { "dayOfWeek": "Monday", "startTime": "10:30 AM", "endTime": "11:30 PM" },
+      {
+        "dayOfWeek": "Tuesday",
+        "startTime": "10:30 AM",
+        "endTime": "11:30 PM"
+      },
+      {
+        "dayOfWeek": "Wednesday",
+        "startTime": "10:30 AM",
+        "endTime": "11:30 PM"
+      },
+      {
+        "dayOfWeek": "Thursday",
+        "startTime": "10:30 AM",
+        "endTime": "11:30 PM"
+      },
+      {
+        "dayOfWeek": "Friday",
+        "startTime": "10:30 AM",
+        "endTime": "11:30 PM"
+      },
+      {
+        "dayOfWeek": "Saturday",
+        "startTime": "10:30 AM",
+        "endTime": "11:30 PM"
+      },
+      {
+        "dayOfWeek": "Sunday",
+        "startTime": "10:30 AM",
+        "endTime": "11:30 PM"
+      }
+    ]
+  },
+  {
+    "name": "Ennabi Grill",
+    "location": {
+      "type": "Point",
+      "coordinates": [46.739856, 24.780613]
+    },
+    "description": "Specialized in serving Saudi meat and barbecue.",
+    "cuisineType": "Arabic",
+    "phone": "0539284291",
+    "ratingsAverage": 4.5,
+    "ratingsQuantity": 0,
+    "imageCover": "ennabiGrill.jpg",
+    "openingHours": [
+      { "dayOfWeek": "Monday", "startTime": "11:00 AM", "endTime": "01:00 AM" },
+      {
+        "dayOfWeek": "Tuesday",
+        "startTime": "11:00 AM",
+        "endTime": "01:00 AM"
+      },
+      {
+        "dayOfWeek": "Wednesday",
+        "startTime": "11:00 AM",
+        "endTime": "01:00 AM"
+      },
+      {
+        "dayOfWeek": "Thursday",
+        "startTime": "11:00 AM",
+        "endTime": "01:00 AM"
+      },
+      {
+        "dayOfWeek": "Friday",
+        "startTime": "11:00 AM",
+        "endTime": "01:00 AM"
+      },
+      {
+        "dayOfWeek": "Saturday",
+        "startTime": "11:00 AM",
+        "endTime": "01:00 AM"
+      },
+      {
+        "dayOfWeek": "Sunday",
+        "startTime": "11:00 AM",
+        "endTime": "01:00 AM"
+      }
+    ]
+  },
+  {
+    "name": "Shrimp Shack",
+    "location": {
+      "type": "Point",
+      "coordinates": [46.746261, 24.763447]
+    },
+    "description": "Famous for seafood",
+    "cuisineType": "seafood",
+    "phone": "0539284291",
+    "ratingsAverage": 4.3,
+    "ratingsQuantity": 0,
+    "imageCover": "shrimpShack.jpg",
+    "openingHours": [
+      { "dayOfWeek": "Monday", "startTime": "11:00 AM", "endTime": "02:00 AM" },
+      {
+        "dayOfWeek": "Tuesday",
+        "startTime": "11:00 AM",
+        "endTime": "02:00 AM"
+      },
+      {
+        "dayOfWeek": "Wednesday",
+        "startTime": "11:00 AM",
+        "endTime": "02:00 AM"
+      },
+      {
+        "dayOfWeek": "Thursday",
+        "startTime": "11:00 AM",
+        "endTime": "02:00 AM"
+      },
+      {
+        "dayOfWeek": "Friday",
+        "startTime": "11:00 AM",
+        "endTime": "02:00 AM"
+      },
+      {
+        "dayOfWeek": "Saturday",
+        "startTime": "11:00 AM",
+        "endTime": "02:00 AM"
+      },
+      {
+        "dayOfWeek": "Sunday",
+        "startTime": "11:00 AM",
+        "endTime": "02:00 AM"
+      }
+    ]
+  }
+]
