@@ -458,5 +458,51 @@
         "endTime": "02:00 AM"
       }
     ]
+  },
+  {
+    "name": "Hashi Basha",
+    "location": {
+      "type": "Point",
+      "coordinates": [46.626815, 24.570749]
+    },
+    "description": "Hashi Basha Restaurant is distinguished by serving the most delicious madghog and kabsa with a special and distinct flavour.",
+    "cuisineType": "Arabic",
+    "phone": "0558003045",
+    "ratingsAverage": 4.3,
+    "ratingsQuantity": 92,
+    "imageCover": "hashibasha.jpg",
+    "openingHours": [
+      { "dayOfWeek": "Monday", "startTime": "11:00 AM", "endTime": "12:00 AM" },
+      {
+        "dayOfWeek": "Tuesday",
+        "startTime": "11:00 AM",
+        "endTime": "12:00 AM"
+      },
+      {
+        "dayOfWeek": "Wednesday",
+        "startTime": "11:00 AM",
+        "endTime": "12:00 AM"
+      },
+      {
+        "dayOfWeek": "Thursday",
+        "startTime": "11:00 AM",
+        "endTime": "12:00 AM"
+      },
+      {
+        "dayOfWeek": "Friday",
+        "startTime": "11:00 AM",
+        "endTime": "12:00 AM"
+      },
+      {
+        "dayOfWeek": "Saturday",
+        "startTime": "11:00 AM",
+        "endTime": "12:00 AM"
+      },
+      {
+        "dayOfWeek": "Sunday",
+        "startTime": "11:00 AM",
+        "endTime": "12:00 AM"
+      }
+    ]
   }
 ]

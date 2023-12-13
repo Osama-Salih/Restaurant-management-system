@@ -112,9 +112,9 @@ exports.protect = asyncHandler(async (req, res, next) => {
 });
 
 // @desc make sure only authorized user can access protected resources
-exports.allowedTo = (userRole) =>
+exports.allowedTo = (...roles) =>
   asyncHandler(async (req, res, next) => {
-    if (req.user.role !== userRole) {
+    if (!roles.includes(req.user.role)) {
       return next(
         new ApiError('You are not allowed to access this resource.', 403),
       );

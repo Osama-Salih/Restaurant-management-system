@@ -1,4 +1,5 @@
 const express = require('express');
+const reviewRoute = require('./reviewRoute');
 
 const {
   getRestaurantValidator,
@@ -56,5 +57,8 @@ router
     deleteRestaurantValidator,
     deleteRestaurant,
   );
+
+// Nested route
+router.use('/:restaurantId/reviews', reviewRoute);
 
 module.exports = router;

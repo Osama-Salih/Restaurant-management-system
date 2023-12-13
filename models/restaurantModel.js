@@ -77,10 +77,20 @@ const restaurantSchema = new mongoose.Schema(
       },
     ],
   },
-  { timestamps: true },
+  {
+    timestamps: true,
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true },
+  },
 );
 
 restaurantSchema.index({ location: '2dsphere' });
+
+restaurantSchema.virtual('reviews', {
+  ref: 'Review',
+  localField: '_id',
+  foreignField: 'restaurant',
+});
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
