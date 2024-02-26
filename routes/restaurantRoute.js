@@ -18,6 +18,8 @@ const {
   deleteRestaurant,
   getRestaurantWithin,
   getDistances,
+  uploadRestaurantImage,
+  resizeImage,
 } = require('../services/restaurantService');
 
 const authService = require('../services/authService');
@@ -38,6 +40,8 @@ router
   .post(
     authService.protect,
     authService.allowedTo('admin'),
+    uploadRestaurantImage,
+    resizeImage,
     createRestaurantValidator,
     createRestaurant,
   );

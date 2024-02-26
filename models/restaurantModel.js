@@ -51,6 +51,11 @@ const restaurantSchema = new mongoose.Schema(
       type: String,
       required: [true, 'A restaurant must have a cover image'],
     },
+    owner: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User',
+      required: [true, 'A restaurant must have owner'],
+    },
     openingHours: [
       {
         dayOfWeek: {

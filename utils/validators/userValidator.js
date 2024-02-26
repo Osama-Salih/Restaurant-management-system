@@ -153,8 +153,7 @@ exports.updateLoggedUserValidator = [
     }),
 
   check('email')
-    .notEmpty()
-    .withMessage('email required')
+    .optional()
     .isEmail()
     .withMessage('Invalid email address')
     .custom(async (val) => {

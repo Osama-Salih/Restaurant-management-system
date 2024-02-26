@@ -1,7 +1,39 @@
 const asyncHandler = require('express-async-handler');
+const multer = require('multer');
+const sharp = require('sharp');
+const { v4: uuidv4 } = require('uuid');
+
 const ApiError = require('../utils/ApiError');
 const ApiFeatures = require('../utils/ApiFeatures');
 const Restaurant = require('../models/restaurantModel');
+
+const multerStorage = multer.memoryStorage();
+
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.split('/')[0].startsWith('image')) {
+    cb(null, true);
+  } else {
+    cb(new ApiError('Only images are allowed', 400), false);
+  }
+};
+const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
+
+exports.uploadRestaurantImage = upload.single('imageCover');
+
+exports.resizeImage = asyncHandler(async (req, res, next) => {
+  console.log(req.body);
+  // uploads/restaurant/id()/date.now().jpeg
+  const fileName = `restaurant-${uuidv4()}-${Date.now()}.jpeg`;
+  await sharp(req.file.buffer)
+    .resize(600, 600)
+    .toFormat('jpeg')
+    .jpeg({ quality: 95 })
+    .toFile(`uploads/restaurants/${fileName}`);
+
+  req.body.imageCover = fileName;
+
+  next();
+});
 
 // @desc   Get all restaurant
 // @route  GET /api/v1/restaurants

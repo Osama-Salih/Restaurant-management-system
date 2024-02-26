@@ -20,14 +20,17 @@ exports.createRestaurantValidator = [
       return true;
     }),
 
+  check('location.type')
+    .notEmpty()
+    .withMessage('location type field is required'),
   check('location.coordinates')
     .notEmpty()
-    .withMessage('location field is required')
+    .withMessage('location coordinates field is required')
     .isArray()
     .withMessage('Location coordinates must be an array with two elements')
     .custom((val) => {
       // Check if both latitude and longitude are valid numbers
-      const [latitude, longitude] = val;
+      const [latitude, longitude] = val.map((coord) => parseFloat(coord));
       if (typeof latitude !== 'number' || typeof longitude !== 'number') {
         throw new Error('Invalid coordinates');
       }
@@ -67,35 +70,35 @@ exports.createRestaurantValidator = [
 
   check('imageCover').notEmpty().withMessage('image cover field required'),
 
-  check('openingHours')
-    .notEmpty()
-    .withMessage('opening hours field required')
-    .isArray()
-    .withMessage('opening hours must be an array with three elements'),
+  // check('openingHours')
+  //   .notEmpty()
+  //   .withMessage('opening hours field required')
+  //   .isArray({ min: 1, max: 7 })
+  //   .withMessage('opening hours must be an array with one to seven elements')
+  //   .custom((val) => {
+  //     console.log(val);
 
-  check('openingHours')
-    .notEmpty()
-    .withMessage('opening hours field required')
-    .isArray()
-    .withMessage('opening hours must be an array with three elements')
-    .custom((val) => {
-      const daysOfWeek = [
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-        'Sunday',
-      ];
+  //     const daysOfWeek = [
+  //       'Monday',
+  //       'Tuesday',
+  //       'Wednesday',
+  //       'Thursday',
+  //       'Friday',
+  //       'Saturday',
+  //       'Sunday',
+  //     ];
 
-      const isValidDay = val.every((el) => daysOfWeek.includes(el.dayOfWeek));
+  //     const isValidStructure = val.every(
+  //       (el) => el.dayOfWeek && el.startTime && el.endTime,
+  //     );
 
-      if (!isValidDay) {
-        throw new Error('Please provide a valid day of week');
-      }
-      return true;
-    }),
+  //     const isValidDay = val.every((el) => daysOfWeek.includes(el.dayOfWeek));
+
+  //     if (!isValidDay || !isValidStructure) {
+  //       throw new Error('Please provide a valid opening hours');
+  //     }
+  //     return true;
+  //   }),
   validatorMiddleware,
 ];
 

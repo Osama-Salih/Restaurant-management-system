@@ -11,6 +11,7 @@
     "ratingsAverage": 4.5,
     "ratingsQuantity": 0,
     "imageCover": "albaik.jpg",
+    "owner": "65dc17f83e315117432e8684",
     "openingHours": [
       { "dayOfWeek": "Monday", "startTime": "9:00 AM", "endTime": "01:00 AM" },
       {
@@ -57,6 +58,7 @@
     "ratingsAverage": 4.6,
     "ratingsQuantity": 0,
     "imageCover": "riyadhsteakhouse.jpg",
+    "owner": "65dc17f83e315117252e8014",
     "openingHours": [
       { "dayOfWeek": "Monday", "startTime": "1:00 AM", "endTime": "02:00 AM" },
       {
@@ -103,6 +105,7 @@
     "ratingsAverage": 4.9,
     "ratingsQuantity": 0,
     "imageCover": "helfMillioncoffee.jpg",
+    "owner": "65dc17f83e315117229e8684",
     "openingHours": [
       { "dayOfWeek": "Monday", "startTime": "06:00 AM", "endTime": "12:30 AM" },
       {
@@ -149,6 +152,7 @@
     "ratingsAverage": 4.5,
     "ratingsQuantity": 0,
     "imageCover": "shawarmer.jpg",
+    "owner": "653c17f83e315117252e8684",
     "openingHours": [
       { "dayOfWeek": "Monday", "startTime": "10:00 AM", "endTime": "02:00 AM" },
       {
@@ -195,6 +199,7 @@
     "ratingsAverage": 4.3,
     "ratingsQuantity": 0,
     "imageCover": "riyadhsushi.jpg",
+    "owner": "65dc17f83e315117252e8684",
     "openingHours": [
       { "dayOfWeek": "Monday", "startTime": "5:00 AM", "endTime": "11:30 AM" },
       {
@@ -241,6 +246,7 @@
     "ratingsAverage": 4.6,
     "ratingsQuantity": 0,
     "imageCover": "cinnabon.jpg",
+    "owner": "65dc17f83e315134252e8684",
     "openingHours": [
       { "dayOfWeek": "Monday", "startTime": "10:00 AM", "endTime": "12:00 AM" },
       {
@@ -287,6 +293,7 @@
     "ratingsAverage": 4.3,
     "ratingsQuantity": 0,
     "imageCover": "dietCenter.jpg",
+    "owner": "65dc17f83e3151124252e8684",
     "openingHours": [
       { "dayOfWeek": "Monday", "startTime": "8:00 AM", "endTime": "11:00 PM" },
       {
@@ -333,6 +340,7 @@
     "ratingsAverage": 4.5,
     "ratingsQuantity": 0,
     "imageCover": "shawaitAlkhalij.jpg",
+    "owner": "65dc17f83e315127252e8684",
     "openingHours": [
       { "dayOfWeek": "Monday", "startTime": "10:30 AM", "endTime": "11:30 PM" },
       {
@@ -379,6 +387,7 @@
     "ratingsAverage": 4.5,
     "ratingsQuantity": 0,
     "imageCover": "ennabiGrill.jpg",
+    "owner": "65dc17243e315117252e8684",
     "openingHours": [
       { "dayOfWeek": "Monday", "startTime": "11:00 AM", "endTime": "01:00 AM" },
       {
@@ -425,6 +434,7 @@
     "ratingsAverage": 4.3,
     "ratingsQuantity": 0,
     "imageCover": "shrimpShack.jpg",
+    "owner": "65dc17f83e315117242e8684",
     "openingHours": [
       { "dayOfWeek": "Monday", "startTime": "11:00 AM", "endTime": "02:00 AM" },
       {
