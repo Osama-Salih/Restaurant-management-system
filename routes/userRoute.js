@@ -22,6 +22,8 @@ const {
   deactivateLoggedUser,
   reactivateLoggedUser,
   updateLoggedUserPassword,
+  uploadUserImage,
+  uploadFileToCloudinary,
 } = require('../services/userService');
 
 const authService = require('../services/authService');
@@ -40,6 +42,8 @@ router.put(
   '/update-me',
   authService.protect,
   authService.allowedTo('user'),
+  uploadUserImage,
+  uploadFileToCloudinary,
   updateLoggedUserValidator,
   updateLoggedUserData,
 );
@@ -87,6 +91,8 @@ router
   .put(
     authService.protect,
     authService.allowedTo('admin'),
+    uploadUserImage,
+    uploadFileToCloudinary,
     updateUserValidator,
     updateUser,
   )

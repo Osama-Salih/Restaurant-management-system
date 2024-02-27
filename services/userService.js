@@ -1,9 +1,36 @@
 const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcryptjs');
+
+const cloudinary = require('../config/cloudinary');
+const { uploadSingleFile } = require('../config/multer');
 const ApiError = require('../utils/ApiError');
 const ApiFeatures = require('../utils/ApiFeatures');
 const User = require('../models/userModel');
 const { createToken } = require('../utils/createToken');
+
+// @desc Upload single file
+exports.uploadUserImage = uploadSingleFile('users').single('profileImage');
+
+// @desc  image processing and upload to cloudinary
+exports.uploadFileToCloudinary = asyncHandler(async (req, res, next) => {
+  // Check if a file is provided
+  if (req.file) {
+    const fileName = `users-${req.user._id}-${Date.now()}`;
+    // console.log(req.file.path);
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      public_id: fileName,
+      width: 600,
+      height: 600,
+      crop: 'fill',
+      format: 'jpeg',
+      quality: 95,
+    });
+
+    // save image to db
+    req.body.profileImage = result.secure_url || result.public_id;
+  }
+  next();
+});
 
 // @desc   Get all users
 // @route  GET /api/v1/users
@@ -141,7 +168,7 @@ exports.getLoggedUserData = asyncHandler(async (req, res, next) => {
 // @desc   Update logged user data
 // @route  PUT /api/v1/users/update-me
 // @access Private-user
-exports.updateLoggedUserData = asyncHandler(async (req, res) => {
+exports.updateLoggedUserData = asyncHandler(async (req, res, next) => {
   const user = await User.findOneAndUpdate(
     req.user._id,
     {

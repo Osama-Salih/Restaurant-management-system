@@ -1,8 +1,8 @@
 const asyncHandler = require('express-async-handler');
 const { v4: uuidv4 } = require('uuid');
 const cloudinary = require('../config/cloudinary');
-const { uploadSingleFile } = require('../config/multer');
 
+const { uploadSingleFile } = require('../config/multer');
 const ApiError = require('../utils/ApiError');
 const ApiFeatures = require('../utils/ApiFeatures');
 const Restaurant = require('../models/restaurantModel');
@@ -27,7 +27,7 @@ exports.uploadFileToCloudinary = asyncHandler(async (req, res, next) => {
     });
 
     // save image to db
-    req.body.imageCover = result.public_id;
+    req.body.imageCover = result.secure_url || result.public_id;
   }
   next();
 });
