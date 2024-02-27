@@ -19,7 +19,7 @@ const {
   getRestaurantWithin,
   getDistances,
   uploadRestaurantImage,
-  resizeImage,
+  uploadFileToCloudinary,
 } = require('../services/restaurantService');
 
 const authService = require('../services/authService');
@@ -41,7 +41,7 @@ router
     authService.protect,
     authService.allowedTo('admin'),
     uploadRestaurantImage,
-    resizeImage,
+    uploadFileToCloudinary,
     createRestaurantValidator,
     createRestaurant,
   );

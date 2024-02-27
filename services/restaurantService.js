@@ -1,37 +1,34 @@
 const asyncHandler = require('express-async-handler');
-const multer = require('multer');
-const sharp = require('sharp');
 const { v4: uuidv4 } = require('uuid');
+const cloudinary = require('../config/cloudinary');
+const { uploadSingleFile } = require('../config/multer');
 
 const ApiError = require('../utils/ApiError');
 const ApiFeatures = require('../utils/ApiFeatures');
 const Restaurant = require('../models/restaurantModel');
 
-const multerStorage = multer.memoryStorage();
+// @desc Upload single file
+exports.uploadRestaurantImage =
+  uploadSingleFile('restaurants').single('imageCover');
 
-const multerFilter = (req, file, cb) => {
-  if (file.mimetype.split('/')[0].startsWith('image')) {
-    cb(null, true);
-  } else {
-    cb(new ApiError('Only images are allowed', 400), false);
+// @desc  image processing and upload to cloudinary
+exports.uploadFileToCloudinary = asyncHandler(async (req, res, next) => {
+  // Check if a file is provided
+  if (req.file) {
+    const fileName = `restaurant-${uuidv4()}-${Date.now()}`;
+    console.log(req.file.path);
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      public_id: fileName,
+      width: 600,
+      height: 600,
+      crop: 'fill',
+      format: 'jpeg',
+      quality: 95,
+    });
+
+    // save image to db
+    req.body.imageCover = result.public_id;
   }
-};
-const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
-
-exports.uploadRestaurantImage = upload.single('imageCover');
-
-exports.resizeImage = asyncHandler(async (req, res, next) => {
-  console.log(req.body);
-  // uploads/restaurant/id()/date.now().jpeg
-  const fileName = `restaurant-${uuidv4()}-${Date.now()}.jpeg`;
-  await sharp(req.file.buffer)
-    .resize(600, 600)
-    .toFormat('jpeg')
-    .jpeg({ quality: 95 })
-    .toFile(`uploads/restaurants/${fileName}`);
-
-  req.body.imageCover = fileName;
-
   next();
 });
 
@@ -85,8 +82,11 @@ exports.getRestaurant = asyncHandler(async (req, res, next) => {
 // @route  POST /api/v1/restaurants
 // @access Private-admin
 exports.createRestaurant = asyncHandler(async (req, res) => {
-  const restaurant = await Restaurant.create(req.body);
+  if (req.body.location) {
+    req.body.location.coordinates = JSON.parse(req.body.location.coordinates);
+  }
 
+  const restaurant = await Restaurant.create(req.body);
   res.status(201).json({
     status: 'success',
     data: {

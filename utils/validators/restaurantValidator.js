@@ -1,6 +1,7 @@
 const slugify = require('slugify');
 const { check } = require('express-validator');
 const validatorMiddleware = require('../../middlewares/validatorMiddleware');
+const User = require('../../models/userModel');
 
 exports.getRestaurantValidator = [
   check('id').isMongoId().withMessage('Invalid restaurant id format'),
@@ -26,12 +27,13 @@ exports.createRestaurantValidator = [
   check('location.coordinates')
     .notEmpty()
     .withMessage('location coordinates field is required')
-    .isArray()
-    .withMessage('Location coordinates must be an array with two elements')
-    .custom((val) => {
+    .custom((val, { req }) => {
       // Check if both latitude and longitude are valid numbers
-      const [latitude, longitude] = val.map((coord) => parseFloat(coord));
-      if (typeof latitude !== 'number' || typeof longitude !== 'number') {
+      const ConvertCoordinatesToObj = JSON.parse(val);
+      const [latitude, longitude] = ConvertCoordinatesToObj.map((coord) =>
+        parseFloat(coord),
+      );
+      if (Number.isNaN(latitude) || Number.isNaN(longitude)) {
         throw new Error('Invalid coordinates');
       }
       return true;
@@ -70,35 +72,20 @@ exports.createRestaurantValidator = [
 
   check('imageCover').notEmpty().withMessage('image cover field required'),
 
-  // check('openingHours')
-  //   .notEmpty()
-  //   .withMessage('opening hours field required')
-  //   .isArray({ min: 1, max: 7 })
-  //   .withMessage('opening hours must be an array with one to seven elements')
-  //   .custom((val) => {
-  //     console.log(val);
+  check('owner')
+    .notEmpty()
+    .withMessage('owner field required')
+    .isMongoId()
+    .withMessage('Invalid owner id format')
+    .custom(async (val) => {
+      const owner = await User.findOne({ _id: val, role: 'owner' });
+      if (!owner) {
+        throw new Error('Invalid id or the user role is not owner');
+      }
+      return true;
+    }),
 
-  //     const daysOfWeek = [
-  //       'Monday',
-  //       'Tuesday',
-  //       'Wednesday',
-  //       'Thursday',
-  //       'Friday',
-  //       'Saturday',
-  //       'Sunday',
-  //     ];
-
-  //     const isValidStructure = val.every(
-  //       (el) => el.dayOfWeek && el.startTime && el.endTime,
-  //     );
-
-  //     const isValidDay = val.every((el) => daysOfWeek.includes(el.dayOfWeek));
-
-  //     if (!isValidDay || !isValidStructure) {
-  //       throw new Error('Please provide a valid opening hours');
-  //     }
-  //     return true;
-  //   }),
+  check('openingHours').optional(),
   validatorMiddleware,
 ];
 
