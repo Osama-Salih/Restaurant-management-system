@@ -2,19 +2,36 @@ const Restaurant = require('../../models/restaurantModel');
 const Category = require('../../models/categoryModel');
 const Item = require('../../models/itemsModel');
 
+const findByIdOrName = async (Model, val) => {
+  const query = /^\d/.test(val) ? { _id: val } : { name: val };
+  return Model.findOne(query);
+};
+
+const getModelDisplayName = (Model) => {
+  switch (Model) {
+    case 'Category':
+      return 'category';
+    case 'Restaurant':
+      return 'restaurant';
+    case 'Item':
+      return 'item';
+    case 'Menu':
+      return 'Menu';
+    default:
+      return 'unknown';
+  }
+};
+
 // @desc Function to check if a document with the given ID exists in the database
 // and throw an error if not found
-const checkValueExists = async (Model, val) => {
-  const document = await Model.findById(val);
+async function checkValueExists(Model, val) {
+  // Check if a string starts with a number
+  const document = findByIdOrName(Model, val);
   if (!document) {
-    throw new Error(
-      `There is no ${
-        Model === 'Category' ? 'category' : 'restaurant'
-      } with this id`,
-    );
+    throw new Error(`There is no ${getModelDisplayName(Model)} with this id`);
   }
   return document;
-};
+}
 
 // @desc Function to authorize an action if the current user is the owner of the document
 const authorizeActionIfOwner = (doc, req) => {

@@ -6,6 +6,10 @@ const menuSchema = new mongoose.Schema(
       type: String,
       required: [true, 'please provide the category name for the menu'],
     },
+    slug: {
+      type: String,
+      lowercase: true,
+    },
     items: [
       {
         type: mongoose.Schema.ObjectId,

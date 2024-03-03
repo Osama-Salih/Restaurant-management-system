@@ -1,12 +1,12 @@
 const express = require('express');
-// const authService = require('../services/authService');
+const authService = require('../services/authService');
 
-// const {
-//   getReviewValidator,
-//   createReviewValidator,
-//   updateReviewValidator,
-//   deleteReviewValidator,
-// } = require('../utils/validators/reviewValidator');
+const {
+  getMenuValidator,
+  createMenuValidator,
+  updateMenuValidator,
+  deleteMenuValidator,
+} = require('../utils/validators/menuValidator');
 
 const {
   getAllMenus,
@@ -18,23 +18,29 @@ const {
 
 const router = express.Router();
 
-router.route('/').get(getAllMenus).post(
-  // authService.protect,
-  // authService.allowedTo('user'),
-  createMenu,
-);
+router
+  .route('/')
+  .get(getAllMenus)
+  .post(
+    authService.protect,
+    authService.allowedTo('admin', 'owner'),
+    createMenuValidator,
+    createMenu,
+  );
 
 router
   .route('/:id')
-  .get(getMenu)
+  .get(getMenuValidator, getMenu)
   .patch(
-    // authService.protect,
-    // authService.allowedTo('user'),
+    authService.protect,
+    authService.allowedTo('admin', 'owner'),
+    updateMenuValidator,
     updateMenu,
   )
   .delete(
-    // authService.protect,
-    // authService.allowedTo('user', 'admin'),
+    authService.protect,
+    authService.allowedTo('admin', 'owner'),
+    deleteMenuValidator,
     deleteMenu,
   );
 
