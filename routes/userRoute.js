@@ -38,7 +38,7 @@ router.get(
   getLoggedUserData,
   getUser,
 );
-router.put(
+router.patch(
   '/update-me',
   authService.protect,
   authService.allowedTo('user'),
@@ -61,7 +61,7 @@ router.get(
   reactivateLoggedUser,
 );
 
-router.put(
+router.patch(
   '/change-my-password',
   authService.protect,
   authService.allowedTo('user'),
@@ -88,7 +88,7 @@ router
     getUserValidator,
     getUser,
   )
-  .put(
+  .patch(
     authService.protect,
     authService.allowedTo('admin'),
     uploadUserImage,
@@ -103,7 +103,7 @@ router
     deleteUser,
   );
 
-router.put(
+router.patch(
   '/change-password/:id',
   changeUserPasswordValidator,
   changeUserPassword,

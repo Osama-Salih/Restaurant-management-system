@@ -16,7 +16,6 @@ exports.uploadFileToCloudinary = asyncHandler(async (req, res, next) => {
   // Check if a file is provided
   if (req.file) {
     const fileName = `restaurant-${uuidv4()}-${Date.now()}`;
-    // console.log(req.file.path);
     const result = await cloudinary.uploader.upload(req.file.path, {
       public_id: fileName,
       width: 600,
@@ -42,7 +41,7 @@ exports.getAllRestaurants = asyncHandler(async (req, res) => {
     .filter()
     .sort()
     .felidsLimit()
-    .search()
+    .search('Restaurant')
     .paginate(countDocuments);
 
   const { mongooseQuery, paginationResults } = apiFeatures;

@@ -1,15 +1,22 @@
-// const slugify = require('slugify');
+const slugify = require('slugify');
 const { check } = require('express-validator');
 const validatorMiddleware = require('../../middlewares/validatorMiddleware');
 const Review = require('../../models/reviewModel');
 
 exports.getReviewValidator = [
-  check('id').isMongoId().withMessage('Invalid restaurant id format'),
+  check('id').isMongoId().withMessage('Invalid review id format'),
   validatorMiddleware,
 ];
 
 exports.createReviewValidator = [
-  check('title').optional(),
+  check('title')
+    .optional()
+    .custom((val, { req }) => {
+      if (req.body.title) {
+        req.body.slug = slugify(val);
+      }
+      return true;
+    }),
   check('ratings')
     .notEmpty()
     .withMessage('ratings field required')

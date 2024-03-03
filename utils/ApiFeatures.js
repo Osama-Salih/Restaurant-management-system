@@ -7,13 +7,10 @@ class ApiFeatures {
   filter() {
     // 1.A Filtering
     const queryObj = { ...this.queryStr };
-    const excludedFelids = ['limit', 'sort', 'fields', 'page', 'keyword'];
-    excludedFelids.forEach((felid) => delete queryObj[felid]);
-
     // 1.B Apply filtering gte, gt, lte, lt
     let queryString = JSON.stringify(queryObj);
     queryString = queryString.replace(
-      /\b(gte|gt|lte|lt)\b/g,
+      /\b(gte|gt|lt|lte)\b/g,
       (match) => `$${match}`,
     );
 
@@ -43,14 +40,19 @@ class ApiFeatures {
     return this;
   }
 
-  search() {
+  search(modelName = '') {
     if (this.queryStr.keyword) {
-      const query = {};
-      query.$or = [
-        { name: { $regex: this.queryStr.keyword, $options: 'i' } },
-        { cuisineType: { $regex: this.queryStr.keyword, $options: 'i' } },
-      ];
-
+      let query = {};
+      if (modelName === 'Restaurant') {
+        query.$or = [
+          { name: { $regex: this.queryStr.keyword, $options: 'i' } },
+          { cuisineType: { $regex: this.queryStr.keyword, $options: 'i' } },
+        ];
+      } else if (modelName === 'Review') {
+        query = { title: { $regex: this.queryStr.keyword, $options: 'i' } };
+      } else {
+        query = { name: { $regex: this.queryStr.keyword, $options: 'i' } };
+      }
       this.mongooseQuery = this.mongooseQuery.find(query);
     }
     return this;

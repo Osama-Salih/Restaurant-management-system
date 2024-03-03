@@ -1,0 +1,48 @@
+[
+  { "1": "categoryName": "Cinnabon"},
+  {
+    "name": "Cinnabon Classic",
+    "price": 19,
+    "quantity": 12,
+    "calories": "880 kcal",
+    "description": "Crisp cinnabon covered with delicous sugar sauce with cara",
+    "imageCover": "item1.jpeg",
+    "category":"65e16d54450326e0801b35e6"
+  },
+  {
+    "name": "Chocobon",
+    "price": 21,
+    "quantity": 12,
+    "calories": "980 kcal",
+    "description": "Crisp cinnabon topped with delicous sugar sauce",
+    "imageCover": "item2.jpeg",
+    "category":"65e16d54450326e0801b35e6"
+  },
+  {
+    "name": "Caramel Pecanbon",
+    "price": 24,
+    "quantity": 12,
+    "calories": "1080 kcal",
+    "description": "Crisp cinnabon covered with delicous sugar sauce caramel",
+    "imageCover": "item3.jpeg",
+    "category":"65e16d54450326e0801b35e6"
+  },
+  {
+    "name": "Mini Bon",
+    "price": 17,
+    "quantity": 12,
+    "calories": "350 kcal",
+    "description": "Minibon",
+    "imageCover": "item4.jpeg",
+    "category":"65e16d54450326e0801b35e6"
+  },
+  {
+    "name": "Mini Choco",
+    "price": 18,
+    "quantity": 12,
+    "calories": "400 kcal",
+    "description": "Bakend yeast with water and sugar topped topped with suce",
+    "imageCover": "item5.jpeg",
+    "category":"65e16d54450326e0801b35e6"
+  }
+]

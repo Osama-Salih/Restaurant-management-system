@@ -34,11 +34,11 @@ router
   .route('/distance/:latlng/unit/:unit')
   .get(getDistancesValidator, getDistances);
 
-router.use(authService.protect);
 router
   .route('/')
   .get(getAllRestaurants)
   .post(
+    authService.protect,
     authService.allowedTo('admin'),
     uploadRestaurantImage,
     uploadFileToCloudinary,
@@ -49,7 +49,8 @@ router
 router
   .route('/:id')
   .get(getRestaurantValidator, getRestaurant)
-  .put(
+  .patch(
+    authService.protect,
     authService.allowedTo('admin', 'owner'),
     updateRestaurantValidator,
     updateRestaurant,

@@ -33,7 +33,7 @@ router
 router
   .route('/:id')
   .get(getReviewValidator, getRreview)
-  .put(
+  .patch(
     authService.protect,
     authService.allowedTo('user'),
     updateReviewValidator,

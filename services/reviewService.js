@@ -23,7 +23,7 @@ exports.getAllReviews = asyncHandler(async (req, res) => {
     .filter()
     .sort()
     .felidsLimit()
-    .search()
+    .search('Review')
     .paginate(countDocuments);
 
   const { mongooseQuery, paginationResults } = apiFeatures;

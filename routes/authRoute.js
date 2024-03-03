@@ -19,6 +19,6 @@ router.post('/singup', singupValidator, singup);
 router.post('/login', loginValidator, login);
 router.post('/forgot-password', forgotPassword);
 router.post('/verify-reset-code', verifyResetCode);
-router.put('/reset-password', resetPassword);
+router.patch('/reset-password', resetPassword);
 
 module.exports = router;

@@ -84,6 +84,7 @@ const restaurantSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+    strictQuery: true,
     toObject: { virtuals: true },
     toJSON: { virtuals: true },
   },
