@@ -5,6 +5,7 @@ const cloudinary = require('../config/cloudinary');
 const { uploadSingleFile } = require('../config/multer');
 const ApiError = require('../utils/ApiError');
 const ApiFeatures = require('../utils/ApiFeatures');
+const Menu = require('../models/MenuModel');
 const Restaurant = require('../models/restaurantModel');
 
 // @desc Upload single file
@@ -73,6 +74,35 @@ exports.getRestaurant = asyncHandler(async (req, res, next) => {
     status: 'success',
     data: {
       restaurant,
+    },
+  });
+});
+
+// @desc   Display restaurant menu
+// @route  GET /api/v1/restaurants/:id
+// @access Public
+exports.displayRestaurantMenu = asyncHandler(async (req, res, next) => {
+  // Build query
+  const countDocuments = await Menu.countDocuments();
+  const apiFeatures = new ApiFeatures(
+    Menu.find({ restaurant: req.params.id }),
+    req.query,
+  )
+    .filter()
+    .sort()
+    .felidsLimit()
+    .search()
+    .paginate(countDocuments);
+
+  const { mongooseQuery, paginationResults } = apiFeatures;
+  // Execute query
+  const menus = await mongooseQuery;
+  res.status(200).json({
+    status: 'success',
+    results: menus.length,
+    data: {
+      paginationResults,
+      menus,
     },
   });
 });

@@ -1,5 +1,6 @@
 const express = require('express');
 const authService = require('../services/authService');
+const { filterForOwner } = require('../middlewares/filterMiddleware');
 
 const {
   getMenuValidator,
@@ -20,7 +21,12 @@ const router = express.Router();
 
 router
   .route('/')
-  .get(getAllMenus)
+  .get(
+    authService.protect,
+    authService.allowedTo('admin', 'owner'),
+    filterForOwner,
+    getAllMenus,
+  )
   .post(
     authService.protect,
     authService.allowedTo('admin', 'owner'),

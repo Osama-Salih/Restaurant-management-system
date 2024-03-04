@@ -9,7 +9,7 @@ const Menu = require('../models/MenuModel');
 exports.getAllMenus = asyncHandler(async (req, res) => {
   // Build query
   const countDocuments = await Menu.countDocuments();
-  const apiFeatures = new ApiFeatures(Menu.find({}), req.query)
+  const apiFeatures = new ApiFeatures(Menu.find(req.categoryFilter), req.query)
     .filter()
     .sort()
     .felidsLimit()

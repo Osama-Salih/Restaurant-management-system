@@ -4,7 +4,7 @@ const validatorMiddleware = require('../../middlewares/validatorMiddleware');
 const User = require('../../models/userModel');
 const Restaurant = require('../../models/restaurantModel');
 
-exports.getRestaurantValidator = [
+exports.displayRestaurantMenuValidator = [
   check('id').isMongoId().withMessage('Invalid restaurant id format'),
   validatorMiddleware,
 ];

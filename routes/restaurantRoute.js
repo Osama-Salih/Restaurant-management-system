@@ -2,7 +2,7 @@ const express = require('express');
 const reviewRoute = require('./reviewRoute');
 
 const {
-  getRestaurantValidator,
+  displayRestaurantMenuValidator,
   createRestaurantValidator,
   updateRestaurantValidator,
   deleteRestaurantValidator,
@@ -12,7 +12,7 @@ const {
 
 const {
   getAllRestaurants,
-  getRestaurant,
+  displayRestaurantMenu,
   createRestaurant,
   updateRestaurant,
   deleteRestaurant,
@@ -48,7 +48,7 @@ router
 
 router
   .route('/:id')
-  .get(getRestaurantValidator, getRestaurant)
+  .get(displayRestaurantMenuValidator, displayRestaurantMenu)
   .patch(
     authService.protect,
     authService.allowedTo('admin', 'owner'),
