@@ -1,7 +1,6 @@
 const path = require('node:path');
 
 const express = require('express');
-const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -28,7 +27,6 @@ app.options('*', cors());
 app.use(compression());
 
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serev a static files form uploads
 app.use(express.static(path.join(__dirname, 'uploads')));

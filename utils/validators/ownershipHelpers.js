@@ -8,10 +8,14 @@ const findByIdOrName = async (Model, val) => {
 };
 
 const getModelDisplayName = (Model) => {
-  switch (Model) {
+  // console.log(JSON.stringify(Model));
+  // console.log(typeof Model);
+
+  switch (Model.modelName) {
     case 'Category':
       return 'category';
     case 'Restaurant':
+      // case 'Model { Restaurant }':
       return 'restaurant';
     case 'Item':
       return 'item';
@@ -26,7 +30,7 @@ const getModelDisplayName = (Model) => {
 // and throw an error if not found
 async function checkValueExists(Model, val) {
   // Check if a string starts with a number
-  const document = findByIdOrName(Model, val);
+  const document = await findByIdOrName(Model, val);
   if (!document) {
     throw new Error(`There is no ${getModelDisplayName(Model)} with this id`);
   }

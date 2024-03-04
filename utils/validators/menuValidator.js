@@ -10,6 +10,18 @@ const {
   authorizeActionIfOwner,
 } = require('./ownershipHelpers');
 
+const validateId = async (val, { req }) => {
+  if (req.user.role === 'owner') {
+    const menu = await checkValueExists(Menu, val);
+    const restaurant = await checkValueExists(
+      Restaurant,
+      menu.restaurant.toString(),
+    );
+    authorizeActionIfOwner(restaurant, req);
+  }
+  return true;
+};
+
 const validateName = async (val, { req }) => {
   await checkValueExists(Category, val);
   req.body.slug = slugify(val);
@@ -68,7 +80,7 @@ const validateRestaurant = async (val, { req }) => {
 };
 
 exports.getMenuValidator = [
-  check('id').isMongoId().withMessage('Invalid format'),
+  check('id').isMongoId().withMessage('Invalid ID format'),
   validatorMiddleware,
 ];
 
@@ -95,7 +107,12 @@ exports.createMenuValidator = [
 ];
 
 exports.updateMenuValidator = [
-  check('name').optional().custom(validateName),
+  check('id').isMongoId().withMessage('Invalid ID format').custom(validateId),
+
+  check('name')
+    .notEmpty()
+    .withMessage('Name field is required with update')
+    .custom(validateName),
 
   check('items')
     .optional()
@@ -113,16 +130,6 @@ exports.updateMenuValidator = [
 ];
 
 exports.deleteMenuValidator = [
-  check('id')
-    .isMongoId()
-    .withMessage('Invalid format')
-    .custom(async (val, { req }) => {
-      if (req.user.role === 'owner') {
-        const menu = await checkValueExists(Menu, val);
-        const restaurant = await checkValueExists(Restaurant, menu.restaurant);
-        authorizeActionIfOwner(restaurant, req);
-      }
-      return true;
-    }),
+  check('id').isMongoId().withMessage('Invalid ID format').custom(validateId),
   validatorMiddleware,
 ];
