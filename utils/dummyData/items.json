@@ -1,4 +1,5 @@
 [
+  [
   { "1": "categoryName": "Cinnabon"},
   {
     "name": "Cinnabon Classic",
@@ -26,23 +27,379 @@
     "description": "Crisp cinnabon covered with delicous sugar sauce caramel",
     "imageCover": "item3.jpeg",
     "category":"65e16d54450326e0801b35e6"
-  },
-  {
-    "name": "Mini Bon",
-    "price": 17,
-    "quantity": 12,
-    "calories": "350 kcal",
-    "description": "Minibon",
-    "imageCover": "item4.jpeg",
-    "category":"65e16d54450326e0801b35e6"
-  },
-  {
-    "name": "Mini Choco",
-    "price": 18,
-    "quantity": 12,
-    "calories": "400 kcal",
-    "description": "Bakend yeast with water and sugar topped topped with suce",
-    "imageCover": "item5.jpeg",
-    "category":"65e16d54450326e0801b35e6"
   }
+],
+
+[
+  { "2": "categoryName": "E.Pack"},
+  {
+    "name": "4 PC'S Classic",
+    "price": 56,
+    "quantity": 12,
+    "calories": "35210 kcal",
+    "description": "4 PCS Cinnamon Roll",
+    "imageCover": "item1.jpeg",
+    "category":"1111111111111111111"
+  },
+  {
+    "title": "4 PC'S Chocobon",
+    "price": 59,
+    "quantity": 12,
+     "calories": "3920 kcal",
+     "description":"4 PCS Choco Roll",
+      "imageCover": "item1.jpeg",
+      "category": "11111111111"
+  },
+  {
+    "title": "4 PC'S Pecanbon",
+    "price": 71,
+    "quantity": 12,
+     "calories": "3412 kcal",
+     "description":"4 PCS Caramel Pecan Roll",
+      "imageCover": "item1.jpeg",
+      "category": "11111111111"
+  }
+],
+[
+  { "3": "categoryName": "Hot Drinks"},
+{
+  "title": "Classic Latte Tall",
+  "price": 17,
+  "quantity": 12,
+   "calories": "125 kcal",
+   "description":"Classic Latte Tall",
+    "imageCover": "item1.jpeg",
+    "category": "11111111111"
+},
+{
+  "title": "Classic Latte Grande",
+  "price": 18,
+  "quantity": 12,
+   "calories": "125 kcal",
+   "description":"Classic Latte Grande",
+    "imageCover": "item1.jpeg",
+    "category": "11111111111"
+},
+{
+  "title": "Classic Latte Supremo",
+  "price": 20,
+  "quantity": 12,
+   "calories": "125 kcal",
+   "description":"Classic Latte Grande",
+    "imageCover": "item1.jpeg",
+    "category": "11111111111"
+}
+],
+[
+  { "4": "categoryName": "Gathering"},
+  {
+    "title": "1 Pecan bites box + 1Assorted Box",
+    "price": 99,
+    "quantity": 12,
+     "calories": "938 kcal",
+     "description":"1 Pecan bites box + 1Assorted Box",
+      "imageCover": "item1.jpeg",
+      "category": "11111111111"
+  },
+  {
+    "title": "2 Pecan bites box 60 Psc",
+    "price": 149,
+    "quantity": 12,
+     "calories": "9478 kcal",
+     "description":"2 Pecan bites box 60 Psc",
+      "imageCover": "item1.jpeg",
+      "category": "11111111111"
+  },
+  {
+    "title": "2 Assorted Boxes 60 Psc",
+    "price": 129,
+    "quantity": 12,
+     "calories": "9478 kcal",
+     "description":"2 Assorted Boxes 60 Psc",
+      "imageCover": "item1.jpeg",
+      "category": "11111111111"
+  }
+]
+]
+
+
+[
+  [
+  { "1": "categoryName": "Hot Drinks"},
+  {
+    "name": "Signature",
+    "price": 12,
+    "quantity": 30,
+    "calories": "201 kcal",
+    "description": "Our Signature drink. made from sweet mix of full fat milk with espresso. (Tip) Enjoy it with requesting extra pump; of sweet sauce.",
+    "imageCover": "item1.jpeg",
+    "category":"65e16d54450326e0801b35e6"
+  },
+  {
+    "name": "Cappuccino",
+    "price": 10,
+    "quantity": 30,
+    "calories": "89 kcal",
+    "description": "Dark, rich espresso mixed with perfectly steamed foamly milk.
+    ",
+    "imageCover": "item1.jpeg",
+    "category":"65e16d54450326e0801b35e6"
+  },
+  {
+    "name": "Hot Chocolate",
+    "price": 16,
+    "quantity": 20,
+    "calories": "339 kcal",
+    "description": "Mix of premium chocolate mixed with steamed milk",
+    "imageCover": "item1.jpeg",
+    "category":"65e16d54450326e0801b35e6"
+  },
+
+]
+[
+  { "2": "categoryName": "Cold drinks"},
+   {
+    "name": "Iced Signature",
+    "price": 14,
+    "quantity": 30,
+    "calories": "255 kcal",
+    "description": "Beloved By our customers, our mix of sweet milk mixed with espresso",
+    "imageCover": "item1.jpeg",
+    "category":"65e16d54450326e0801b35e6"
+  },
+   {
+    "name": "Iced Pistachio Latte",
+    "price": 22,
+    "quantity": 40,
+    "calories": "323 kcal",
+    "description": "Rich mix of pistachio and sweet milk mixed with espresso over ice",
+    "imageCover": "item1.jpeg",
+    "category":"65e16d54450326e0801b35e6"
+  },
+   {
+    "name": "Iced Cereal Latte",
+    "price": 16,
+    "quantity": 40,
+    "calories": "146 kcal",
+    "description": "Sweet mix of cereal milk topped with espresso",
+    "imageCover": "item1.jpeg",
+    "category":"65e16d54450326e0801b35e6"
+  },
+]
+[
+  { "3": "categoryName": "Dessert"},
+   {
+    "name": "BROWNIES",
+    "price": 12,
+    "quantity": 50,
+    "calories": "377 kcal",
+    "description": "chocolate baked treat with walnut",
+    "imageCover": "item1.jpeg",
+    "category":"65e16d54450326e0801b35e6"
+  },
+   {
+    "name": "CARAMEL BITES",
+    "price": 12,
+    "quantity": 40,
+    "calories": "288 kcal",
+    "description": "Crunch of biscuit base with toffee middle and chocolate topping",
+    "imageCover": "item1.jpeg",
+    "category":"65e16d54450326e0801b35e6"
+  },
+   {
+    "name": "COOKIES",
+    "price": 10,
+    "quantity": 35,
+    "calories": "148 kcal",
+    "description": "Daily Baked chocolate chips cookies",
+    "imageCover": "item1.jpeg",
+    "category":"65e16d54450326e0801b35e6"
+  },
+]
+]
+
+[
+  [
+    { "1": "categoryName": "shawarma"},
+    {
+      "name": "Two Garsa",
+      "price": 13,
+      "quantity": 40,
+      "calories": "20 kcal",
+      "description": "Two chicken shawarma Garsa",
+      "imageCover": "item1.jpeg",
+      "category":"65e16d54450326e0801b35e6"
+    },
+    {
+      "name": "Two Mafloqah",
+      "price": 15,
+      "quantity": 22,
+      "calories": "20 kcal",
+      "description": "Two chicken shawarma Mafloqah",
+      "imageCover": "item1.jpeg",
+      "category":"65e16d54450326e0801b35e6"
+    },
+    {
+      "name": "Two Arabi",
+      "price": 17,
+      "quantity": 50,
+      "calories": "20 kcal",
+      "description": "Two chicken shawarma Arabi",
+      "imageCover": "item1.jpeg",
+      "category":"65e16d54450326e0801b35e6"
+    },
+  ],
+  [
+    { "2": "categoryName": "Boxes"},
+    {
+      "name": "Arabo",
+      "price": 27,
+      "quantity": 50,
+      "calories": "20 kcal",
+      "description": "6 pieces of chicken shawarma with mutawam",
+      "imageCover": "item1.jpeg",
+      "category":"65e16d54450326e0801b35e6"
+    },
+    {
+      "name": "Sahen",
+      "price": 32,
+      "quantity": 50,
+      "calories": "20 kcal",
+      "description": "6 pieces of chicken shawarma with mutawam Sahen",
+      "imageCover": "item1.jpeg",
+      "category":"65e16d54450326e0801b35e6"
+    },
+    {
+      "name": "Arabo Meal",
+      "price": 35,
+      "quantity": 50,
+      "calories": "20 kcal",
+      "description": "6 pieces of chicken shawarma with mutawam arabo meal",
+      "imageCover": "item1.jpeg",
+      "category":"65e16d54450326e0801b35e6"
+    },
+  ],
+  [
+    { "2": "categoryName": "Gatherings"},
+    {
+      "name": "Tagamees",
+      "price": 59,
+      "quantity": 60,
+      "calories": "20 kcal",
+      "description": "14 pieces of chicken shawarma with 2 dipping tagamees",
+      "imageCover": "item1.jpeg",
+      "category":"65e16d54450326e0801b35e6"
+    },
+    {
+      "name": "Al Azeima",
+      "price": 110,
+      "quantity": 60,
+      "calories": "20 kcal",
+      "description": "14 pieces of chicken shawarma with 2 dipping azeima",
+      "imageCover": "item1.jpeg",
+      "category":"65e16d54450326e0801b35e6"
+    },
+    {
+      "name": "Mafloqah Dozen",
+      "price": 101,
+      "quantity": 60,
+      "calories": "20 kcal",
+      "description": "14 pieces of chicken shawarma with 2 dipping dozen",
+      "imageCover": "item1.jpeg",
+      "category":"65e16d54450326e0801b35e6"
+    },
+  ]
+]
+
+[
+  [
+    { "1": "categoryName": "Chicken"},
+    {
+      "title": "Albaik 8 Piece Chicken Meal -Regular",
+      "price": 41,
+      "quantity": 100,
+       "calories": "2448 kcal",
+       "description":"Crunchy to perfection includes 2 buns. fries. and 4 garlic sauces",
+        "imageCover": "item1.jpeg",
+        "category": "11111111111"
+    },
+    {
+      "title": "Albaik 4 Piece Chicken Meal - Regular",
+      "price": 21,
+      "quantity": 100,
+       "calories": "1378 kcal",
+       "description":"Crunchy to perfection includes a bun. fries. and 2 garlic sauces",
+        "imageCover": "item1.jpeg",
+        "category": "11111111111"
+    },
+    {
+      "title": "10 Piece Chicken Nuggets Meal - Regular",
+      "price": 21,
+      "quantity": 100,
+       "calories": "1262 kcal",
+       "description":"Crunchy to perfection includes a bun. fries. and 2 nuggets sauces",
+        "imageCover": "item1.jpeg",
+        "category": "11111111111"
+    }
+  ],
+  [
+    { "1": "categoryName": "Combos"},
+    {
+      "title": "Combo 27",
+      "price": 27,
+      "quantity": 100,
+       "calories": "957 kcal",
+       "description":"2x shawerma garlic + 1x corn on the cob + 1x pepsi",
+        "imageCover": "item1.jpeg",
+        "category": "11111111111"
+    },
+    {
+      "title": "Combo 31",
+      "price": 31,
+      "quantity": 100,
+       "calories": "957 kcal",
+       "description":"2x shawerma garlic + 1x corn on the cob + 1x pepsi",
+        "imageCover": "item1.jpeg",
+        "category": "11111111111"
+    },
+    {
+      "title": "Combo 33",
+      "price": 33,
+      "quantity": 100,
+       "calories": "1219 kcal",
+       "description":"2x shawerma garlic + 1x corn on the cob + 1x pepsi",
+        "imageCover": "item1.jpeg",
+        "category": "11111111111"
+    }
+],
+  [
+    { "1": "categoryName": "Seafood"},
+    {
+      "title": "Fish Fillet Burger",
+      "price": 8.5,
+      "quantity": 50,
+       "calories": "375 kcal",
+       "description":"Fish fillet in our unique bread with diced pickles and our 2 special sa",
+        "imageCover": "item1.jpeg",
+        "category": "11111111111"
+    },
+    {
+      "title": "Fish Fillet Meal - Spicy",
+      "price": 26,
+      "quantity": 50,
+       "calories": "1150 kcal",
+       "description":"10 spicy fish fillet nuggets served with fries. abun and 2 cocktail sau",
+        "imageCover": "item1.jpeg",
+        "category": "11111111111"
+    },
+    {
+      "title": "10 Piece Jumbo Shrimp Meal",
+      "price": 37,
+      "quantity": 50,
+       "calories": "1430 kcal",
+       "description":"10 pieces of jumbo shrimp served with fries. a bun and 2 cocktail sa",
+        "imageCover": "item1.jpeg",
+        "category": "11111111111"
+    }
+  ]
 ]

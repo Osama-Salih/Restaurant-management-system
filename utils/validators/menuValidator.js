@@ -8,6 +8,7 @@ const Restaurant = require('../../models/restaurantModel');
 const {
   checkValueExists,
   authorizeActionIfOwner,
+  checkDocumentDuplication,
 } = require('./ownershipHelpers');
 
 const validateId = async (val, { req }) => {
@@ -88,7 +89,8 @@ exports.createMenuValidator = [
   check('name')
     .notEmpty()
     .withMessage('Name field is required')
-    .custom(validateName),
+    .custom(validateName)
+    .custom(checkDocumentDuplication(Menu)),
 
   check('items')
     .notEmpty()
@@ -112,7 +114,8 @@ exports.updateMenuValidator = [
   check('name')
     .notEmpty()
     .withMessage('Name field is required with update')
-    .custom(validateName),
+    .custom(validateName)
+    .custom(checkDocumentDuplication(Menu)),
 
   check('items')
     .optional()

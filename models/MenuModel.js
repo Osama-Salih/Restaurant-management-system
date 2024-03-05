@@ -21,10 +21,19 @@ const menuSchema = new mongoose.Schema(
       type: mongoose.Schema.ObjectId,
       ref: 'Restaurant',
       required: [true, 'menu must belong to a restaurant'],
+      select: false,
     },
   },
-  { timestamps: true, strictQuery: true },
+  { strictQuery: true },
 );
+
+menuSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'items',
+    select: '-category -quantity -createdAt -updatedAt -__v',
+  });
+  next();
+});
 
 const Menu = mongoose.model('Menu', menuSchema);
 

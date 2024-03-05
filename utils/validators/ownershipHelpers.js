@@ -1,3 +1,4 @@
+const slugify = require('slugify');
 const Restaurant = require('../../models/restaurantModel');
 const Category = require('../../models/categoryModel');
 const Item = require('../../models/itemsModel');
@@ -8,14 +9,10 @@ const findByIdOrName = async (Model, val) => {
 };
 
 const getModelDisplayName = (Model) => {
-  // console.log(JSON.stringify(Model));
-  // console.log(typeof Model);
-
   switch (Model.modelName) {
     case 'Category':
       return 'category';
     case 'Restaurant':
-      // case 'Model { Restaurant }':
       return 'restaurant';
     case 'Item':
       return 'item';
@@ -63,9 +60,27 @@ const checkOwnerItemPermission = async (itemId, { req }) => {
   await checkOwnerActionPermission(item.category, { req });
 };
 
+const checkDocumentDuplication =
+  (Model) =>
+  async (val, { req }) => {
+    const name = await Model.findOne({ name: val });
+    if (name) {
+      throw new Error(
+        `${Model === 'Item' ? 'Item' : 'Menu'} name already exists`,
+      );
+    }
+    // add slug for the name field
+    if (req.body.name) {
+      req.body.slug = slugify(val);
+    }
+    return true;
+  };
+
 module.exports = {
   checkValueExists,
   authorizeActionIfOwner,
   checkOwnerActionPermission,
   checkOwnerItemPermission,
+  findByIdOrName,
+  checkDocumentDuplication,
 };

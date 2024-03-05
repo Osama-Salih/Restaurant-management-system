@@ -5,8 +5,9 @@ const itemSchema = new mongoose.Schema(
     name: {
       type: String,
       trim: true,
+      unique: true,
       minLenght: [3, 'Too short item name'],
-      maxLenght: [30, 'Too long item name'],
+      maxLenght: [40, 'Too long item name'],
       required: [true, 'Item must have a name'],
     },
     slug: {

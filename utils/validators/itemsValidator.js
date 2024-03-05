@@ -1,10 +1,11 @@
-const slugify = require('slugify');
 const { check } = require('express-validator');
+const Item = require('../../models/itemsModel');
 const validatorMiddleware = require('../../middlewares/validatorMiddleware');
 
 const {
   checkOwnerActionPermission,
   checkOwnerItemPermission,
+  checkDocumentDuplication,
 } = require('./ownershipHelpers');
 
 exports.getItemValidator = [
@@ -16,15 +17,9 @@ exports.createItemValidator = [
   check('name')
     .notEmpty()
     .withMessage('Name field is required')
-    .isLength({ min: 3, max: 30 })
+    .isLength({ min: 3, max: 40 })
     .withMessage('Name field must be between 3 and 30 characters')
-    .custom((val, { req }) => {
-      // add slug for the name field
-      if (req.body.name) {
-        req.body.slug = slugify(val);
-      }
-      return true;
-    }),
+    .custom(checkDocumentDuplication(Item)),
 
   check('price')
     .notEmpty()
@@ -71,15 +66,9 @@ exports.updateItemValidator = [
 
   check('name')
     .optional()
-    .isLength({ min: 3, max: 30 })
+    .isLength({ min: 3, max: 40 })
     .withMessage('Name field must be between 3 and 30 characters')
-    .custom((val, { req }) => {
-      // add slug for the name field
-      if (req.body.name) {
-        req.body.slug = slugify(val);
-      }
-      return true;
-    }),
+    .custom(checkDocumentDuplication(Item)),
 
   check('price')
     .optional()

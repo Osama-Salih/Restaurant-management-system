@@ -52,6 +52,8 @@ router
   .patch(
     authService.protect,
     authService.allowedTo('admin', 'owner'),
+    uploadRestaurantImage,
+    uploadFileToCloudinary,
     updateRestaurantValidator,
     updateRestaurant,
   )
