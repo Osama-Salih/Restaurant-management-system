@@ -3,8 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 const cloudinary = require('../config/cloudinary');
 
 const { uploadSingleFile } = require('../config/multer');
-const ApiError = require('../utils/ApiError');
-const ApiFeatures = require('../utils/ApiFeatures');
+const factory = require('./handlerFactroy');
 const Item = require('../models/itemsModel');
 
 // @desc Upload single file
@@ -39,92 +38,24 @@ exports.setCategoryIdToBody = (req, res, next) => {
 // @desc   Get all items
 // @route  GET /api/v1/itmes
 // @access Private/admin-owner
-exports.getAllItems = asyncHandler(async (req, res) => {
-  // Build query
-  const countDocuments = await Item.countDocuments();
-  const apiFeatures = new ApiFeatures(Item.find(req.itemFilter), req.query)
-    .filter()
-    .search()
-    .sort()
-    .felidsLimit()
-    .paginate(countDocuments);
-
-  const { mongooseQuery, paginationResults } = apiFeatures;
-  // Execute query
-  const items = await mongooseQuery;
-  res.status(200).json({
-    status: 'success',
-    results: items.length,
-    data: {
-      paginationResults,
-      items,
-    },
-  });
-});
+exports.getAllItems = factory.getAll(Item);
 
 // @desc   Get specific item by id
 // @route  GET /api/v1/items/:id
 // @access Public
-exports.getItem = asyncHandler(async (req, res, next) => {
-  const item = await Item.findById(req.params.id);
-
-  if (!item) {
-    return next(new ApiError('Item not found', 404));
-  }
-
-  res.status(200).json({
-    status: 'success',
-    data: {
-      item,
-    },
-  });
-});
+exports.getItem = factory.getOne(Item);
 
 // @desc   Create item
 // @route  POST /api/v1/items
 // @access Private/admin-owner
-exports.createItem = asyncHandler(async (req, res) => {
-  const item = await Item.create(req.body);
-  res.status(201).json({
-    status: 'success',
-    data: {
-      item,
-    },
-  });
-});
+exports.createItem = factory.createOne(Item);
 
 // @desc   Update specific item by id
 // @route  PATCH /api/v1/items/:id
 // @access Private/admin-owner
-exports.updateItem = asyncHandler(async (req, res, next) => {
-  const item = await Item.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
-
-  if (!item) {
-    return next(new ApiError('Item not found', 404));
-  }
-
-  res.status(200).json({
-    status: 'success',
-    data: {
-      item,
-    },
-  });
-});
+exports.updateItem = factory.updateOne(Item);
 
 // @desc   Delete specific item by id
 // @route  DELETE /api/v1/items/:id
 // @access Private/admin-owner
-exports.deleteItem = asyncHandler(async (req, res, next) => {
-  const item = await Item.findByIdAndDelete(req.params.id);
-
-  if (!item) {
-    return next(new ApiError('Item not found', 404));
-  }
-
-  res.status(204).json({
-    status: 'success',
-    data: null,
-  });
-});
+exports.deleteItem = factory.deleteOne(Item);

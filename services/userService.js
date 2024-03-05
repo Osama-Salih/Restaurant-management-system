@@ -4,9 +4,9 @@ const bcrypt = require('bcryptjs');
 const cloudinary = require('../config/cloudinary');
 const { uploadSingleFile } = require('../config/multer');
 const ApiError = require('../utils/ApiError');
-const ApiFeatures = require('../utils/ApiFeatures');
-const User = require('../models/userModel');
 const { createToken } = require('../utils/createToken');
+const factory = require('./handlerFactroy');
+const User = require('../models/userModel');
 
 // @desc Upload single file
 exports.uploadUserImage = uploadSingleFile('users').single('profileImage');
@@ -35,61 +35,17 @@ exports.uploadFileToCloudinary = asyncHandler(async (req, res, next) => {
 // @desc   Get all users
 // @route  GET /api/v1/users
 // @access Private-admin
-exports.getAllUsers = asyncHandler(async (req, res) => {
-  // Build query
-  const countDocuments = await User.countDocuments();
-  const apiFeatures = new ApiFeatures(User.find(), req.query)
-    .filter()
-    .sort()
-    .felidsLimit()
-    .search()
-    .paginate(countDocuments);
-
-  const { mongooseQuery, paginationResults } = apiFeatures;
-  // Execute query
-  const users = await mongooseQuery;
-
-  res.status(200).json({
-    status: 'success',
-    results: users.length,
-    data: {
-      paginationResults,
-      users,
-    },
-  });
-});
+exports.getAllUsers = factory.getAll(User);
 
 // @desc   Get specific user by id
 // @route  GET /api/v1/users/:id
 // @access Private-admin
-exports.getUser = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.params.id);
-
-  if (!user) {
-    return next(new ApiError('User not found', 404));
-  }
-
-  res.status(200).json({
-    status: 'success',
-    data: {
-      user,
-    },
-  });
-});
+exports.getUser = factory.getOne(User);
 
 // @desc   Create user
 // @route  POST /api/v1/users
 // @access Private-admin
-exports.createUser = asyncHandler(async (req, res) => {
-  const user = await User.create(req.body);
-
-  res.status(201).json({
-    status: 'success',
-    data: {
-      user,
-    },
-  });
-});
+exports.createUser = factory.createOne(User);
 
 // @desc   Update specific user by id
 // @route  PUT /api/v1/users/:id
@@ -122,15 +78,7 @@ exports.updateUser = asyncHandler(async (req, res, next) => {
 // @desc   Delete specific user by id
 // @route  DELETE /api/v1/users/:id
 // @access Private-admin
-exports.deleteUser = asyncHandler(async (req, res, next) => {
-  const user = await User.findByIdAndDelete(req.params.id);
-
-  if (!user) {
-    return next(new ApiError('User not found', 404));
-  }
-
-  res.status(204).send();
-});
+exports.deleteUser = factory.deleteOne(User);
 
 // @desc   Change user password
 // @route  PUT /api/v1/users/change-password/:id

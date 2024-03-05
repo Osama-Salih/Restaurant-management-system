@@ -15,13 +15,14 @@ const {
   updateReview,
   deleteRreview,
   setRestaurantIdAndUserIdToBody,
+  filterRestaurantsById,
 } = require('../services/reviewService');
 
 const router = express.Router({ mergeParams: true });
 
 router
   .route('/')
-  .get(getAllReviews)
+  .get(filterRestaurantsById, getAllReviews)
   .post(
     authService.protect,
     authService.allowedTo('user'),

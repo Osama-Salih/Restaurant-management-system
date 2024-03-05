@@ -21,15 +21,16 @@ const handleJwtExpired = () =>
   new ApiError('Expired token, please login again.', 401);
 
 const globalErrorHandler = (err, req, res, next) => {
-  err.statusCode = err.statusCode || 500;
-  err.status = err.status || 'error';
+  let error = Object.create(err);
+  error.statusCode = error.statusCode || 500;
+  error.status = error.status || 'error';
   if (process.env.NODE_ENV === 'development') {
-    sendErrorDev(err, res);
+    sendErrorDev(error, res);
   } else {
-    if (err.name === 'JsonWebTokenError') err = handleJwtInvalidSignature();
-    if (err.name === 'TokenExpiredError') err = handleJwtExpired();
+    if (error.name === 'JsonWebTokenError') error = handleJwtInvalidSignature();
+    if (error.name === 'TokenExpiredError') error = handleJwtExpired();
 
-    sendErrorProd(err, res);
+    sendErrorProd(error, res);
   }
 
   next();

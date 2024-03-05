@@ -17,7 +17,9 @@ const getModelDisplayName = (Model) => {
     case 'Item':
       return 'item';
     case 'Menu':
-      return 'Menu';
+      return 'menu';
+    case 'Review':
+      return 'review';
     default:
       return 'unknown';
   }
@@ -65,9 +67,7 @@ const checkDocumentDuplication =
   async (val, { req }) => {
     const name = await Model.findOne({ name: val });
     if (name) {
-      throw new Error(
-        `${Model === 'Item' ? 'Item' : 'Menu'} name already exists`,
-      );
+      throw new Error(`${getModelDisplayName(Model)} name already exists`);
     }
     // add slug for the name field
     if (req.body.name) {

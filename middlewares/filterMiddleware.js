@@ -6,7 +6,7 @@ const Restaurant = require('../models/restaurantModel');
 //@desc Middleware to filter categories and items based on owner's restaurant
 exports.filterForOwner = asyncHandler(async (req, res, next) => {
   let categoryFilter = {};
-  let itemFilter = {};
+  let paramsFilter = {};
 
   // Check if the user has the 'owner' role
   if (req.user.role === 'owner') {
@@ -27,12 +27,12 @@ exports.filterForOwner = asyncHandler(async (req, res, next) => {
     const categoriesIds = categories.map((el) => el._id.toString());
 
     categoryFilter = { restaurant: restaurant._id.toString() }; // For categories
-    itemFilter = { category: { $exists: true, $in: categoriesIds } }; // For items
+    paramsFilter = { category: { $exists: true, $in: categoriesIds } }; // For items
   }
   // @desc Filter for Nested route / filter all items for specific category
-  if (req.params.categoryId) itemFilter = { category: req.params.categoryId };
+  if (req.params.categoryId) paramsFilter = { category: req.params.categoryId };
 
   req.categoryFilter = categoryFilter;
-  req.itemFilter = itemFilter;
+  req.paramsFilter = paramsFilter;
   next();
 });

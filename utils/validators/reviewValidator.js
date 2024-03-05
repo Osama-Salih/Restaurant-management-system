@@ -2,6 +2,10 @@ const slugify = require('slugify');
 const { check } = require('express-validator');
 const validatorMiddleware = require('../../middlewares/validatorMiddleware');
 const Review = require('../../models/reviewModel');
+const {
+  checkValueExists,
+  authorizeActionIfOwner,
+} = require('./ownershipHelpers');
 
 exports.getReviewValidator = [
   check('id').isMongoId().withMessage('Invalid review id format'),
@@ -51,16 +55,9 @@ exports.updateReviewValidator = [
   check('id')
     .isMongoId()
     .withMessage('Invalid review id format')
-    .custom(async (revId, { req }) => {
-      const review = await Review.findById(revId);
-
-      console.log(review.user._id.toString());
-      console.log(req.user._id.toString());
-
-      if (review.user._id.toString() !== req.user._id.toString()) {
-        throw new Error('You are not allowed to perform this action');
-      }
-      return true;
+    .custom(async (val, { req }) => {
+      const review = await checkValueExists(Review, val);
+      authorizeActionIfOwner(review, req);
     }),
 
   check('title').optional(),
@@ -76,8 +73,8 @@ exports.deleteReviewValidator = [
   check('id')
     .isMongoId()
     .withMessage('Invalid review id format')
-    .custom(async (revId, { req }) => {
-      const review = await Review.findById(revId);
+    .custom(async (val, { req }) => {
+      const review = await checkValueExists(Review, val);
 
       if (
         req.user.role !== 'admin' &&

@@ -6,6 +6,7 @@ const { uploadSingleFile } = require('../config/multer');
 const ApiError = require('../utils/ApiError');
 const ApiFeatures = require('../utils/ApiFeatures');
 const Menu = require('../models/MenuModel');
+const factory = require('./handlerFactroy');
 const Restaurant = require('../models/restaurantModel');
 
 // @desc Upload single file
@@ -35,53 +36,12 @@ exports.uploadFileToCloudinary = asyncHandler(async (req, res, next) => {
 // @desc   Get all restaurant
 // @route  GET /api/v1/restaurants
 // @access Public
-exports.getAllRestaurants = asyncHandler(async (req, res) => {
-  // Build query
-  const countDocuments = await Restaurant.countDocuments();
-  const apiFeatures = new ApiFeatures(Restaurant.find(), req.query)
-    .filter()
-    .sort()
-    .felidsLimit()
-    .search('Restaurant')
-    .paginate(countDocuments);
-
-  const { mongooseQuery, paginationResults } = apiFeatures;
-  // Execute query
-  const restaurants = await mongooseQuery;
-  res.status(200).json({
-    status: 'success',
-    results: restaurants.length,
-    data: {
-      paginationResults,
-      restaurants,
-    },
-  });
-});
-
-// @desc   Get specific restaurant by id
-// @route  GET /api/v1/restaurants/:id
-// @access Public
-exports.getRestaurant = asyncHandler(async (req, res, next) => {
-  const restaurant = await Restaurant.findById(req.params.id).populate(
-    'reviews',
-  );
-
-  if (!restaurant) {
-    return next(new ApiError('Restaurant not found', 404));
-  }
-
-  res.status(200).json({
-    status: 'success',
-    data: {
-      restaurant,
-    },
-  });
-});
+exports.getAllRestaurants = factory.getAll(Restaurant, 'Restaurant');
 
 // @desc   Display restaurant menu
 // @route  GET /api/v1/restaurants/:id
 // @access Public
-exports.displayRestaurantMenu = asyncHandler(async (req, res, next) => {
+exports.displayRestaurantMenu = asyncHandler(async (req, res) => {
   // Build query
   const countDocuments = await Menu.countDocuments();
   const apiFeatures = new ApiFeatures(
@@ -110,57 +70,17 @@ exports.displayRestaurantMenu = asyncHandler(async (req, res, next) => {
 // @desc   Create restaurant
 // @route  POST /api/v1/restaurants
 // @access Private-admin
-exports.createRestaurant = asyncHandler(async (req, res) => {
-  if (req.body.location) {
-    req.body.location.coordinates = JSON.parse(req.body.location.coordinates);
-  }
-
-  const restaurant = await Restaurant.create(req.body);
-  res.status(201).json({
-    status: 'success',
-    data: {
-      restaurant,
-    },
-  });
-});
+exports.createRestaurant = factory.createOne(Restaurant);
 
 // @desc   Update specific restaurant by id
 // @route  PUT /api/v1/restaurants/:id
 // @access Private-admin
-exports.updateRestaurant = asyncHandler(async (req, res, next) => {
-  const restaurant = await Restaurant.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true },
-  );
-
-  if (!restaurant) {
-    return next(new ApiError('Restaurant not found', 404));
-  }
-
-  res.status(200).json({
-    status: 'success',
-    data: {
-      restaurant,
-    },
-  });
-});
+exports.updateRestaurant = factory.updateOne(Restaurant);
 
 // @desc   Delete specific restaurant by id
 // @route  DELETE /api/v1/restaurants/:id
 // @access Private-admin
-exports.deleteRestaurant = asyncHandler(async (req, res, next) => {
-  const restaurant = await Restaurant.findByIdAndDelete(req.params.id);
-
-  if (!restaurant) {
-    return next(new ApiError('Restaurant not found', 404));
-  }
-
-  res.status(204).json({
-    status: 'success',
-    data: null,
-  });
-});
+exports.deleteRestaurant = factory.deleteOne(Restaurant);
 
 // @desc   Get the closest restaurants to a specific location
 // @route  GET /api/v1/restaurants/restaurants-within/:distance/center/:latlng/unit/:unit
