@@ -78,7 +78,7 @@ reviewSchema.post(
 );
 
 reviewSchema.pre(/^find/, function (next) {
-  this.populate({ path: 'user', select: 'name' });
+  this.populate({ path: 'user', select: 'name profileImage' });
   next();
 });
 const Review = mongoose.model('Review', reviewSchema);

@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const sendEmail = require('../utils/sendEmail');
 const ApiError = require('../utils/ApiError');
 const { createToken } = require('../utils/createToken');
+const { sanitizeUser } = require('../utils/sanitizeData/userSanitize');
 const User = require('../models/userModel');
 
 const createSendToken = (user, res, statusCode) => {
@@ -25,7 +26,7 @@ const createSendToken = (user, res, statusCode) => {
   res.status(statusCode).json({
     status: 'success',
     data: {
-      user,
+      user: sanitizeUser(user),
       token,
     },
   });

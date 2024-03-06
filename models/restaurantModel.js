@@ -21,15 +21,18 @@ const restaurantSchema = new mongoose.Schema(
         type: String,
         enum: ['Point'],
         default: 'Point',
+        select: false,
       },
       coordinates: {
         type: [Number],
         required: true,
+        select: false,
       },
     },
     description: {
       type: String,
       required: [true, 'A restaurant description required'],
+      seletct: false,
     },
     cuisineType: {
       type: String,
@@ -46,7 +49,10 @@ const restaurantSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    phone: String,
+    phone: {
+      type: String,
+      select: false,
+    },
     imageCover: {
       type: String,
       required: [true, 'A restaurant must have a cover image'],
@@ -55,6 +61,7 @@ const restaurantSchema = new mongoose.Schema(
       type: mongoose.Schema.ObjectId,
       ref: 'User',
       required: [true, 'A restaurant must have owner'],
+      select: false,
     },
     openingHours: [
       {

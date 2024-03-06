@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler');
 const ApiError = require('../utils/ApiError');
 const ApiFeatures = require('../utils/ApiFeatures');
 
+//@desc Filter query documents for any model has filter object
 const setFilterForModel = (Model, req) => {
   let filter = {};
   switch (Model.modelName) {
@@ -36,6 +37,7 @@ exports.getAll = (Model, modelName = '') =>
     const { mongooseQuery, paginationResults } = apiFeatures;
     // Execute query
     const documents = await mongooseQuery;
+    // documents = sanitizeDataForModel(Model, documents);
     res.status(200).json({
       status: 'success',
       results: documents.length,
