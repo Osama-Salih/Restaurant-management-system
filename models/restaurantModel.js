@@ -61,7 +61,6 @@ const restaurantSchema = new mongoose.Schema(
       type: mongoose.Schema.ObjectId,
       ref: 'User',
       required: [true, 'A restaurant must have owner'],
-      select: false,
     },
     openingHours: [
       {

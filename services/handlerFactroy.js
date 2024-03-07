@@ -4,10 +4,12 @@ const ApiFeatures = require('../utils/ApiFeatures');
 
 //@desc Filter query documents for any model has filter object
 const setFilterForModel = (Model, req) => {
+  console.log(Model);
   let filter = {};
   switch (Model.modelName) {
     case 'Category':
     case 'Menu':
+    case 'Coupon':
       filter = req.categoryFilter;
       break;
     case 'Item':
@@ -25,6 +27,7 @@ const setFilterForModel = (Model, req) => {
 exports.getAll = (Model, modelName = '') =>
   asyncHandler(async (req, res) => {
     const filter = setFilterForModel(Model, req);
+    console.log(filter);
     // Build query
     const countDocuments = await Model.countDocuments();
     const apiFeatures = new ApiFeatures(Model.find(filter), req.query)

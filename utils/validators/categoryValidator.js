@@ -1,10 +1,13 @@
 const slugify = require('slugify');
 const { check } = require('express-validator');
 const validatorMiddleware = require('../../middlewares/validatorMiddleware');
+const Category = require('../../models/categoryModel');
+
 const {
   checkValueExists,
-  authorizeActionIfOwner,
   checkOwnerActionPermission,
+  checkDocumentDuplication,
+  restaurantCustom,
 } = require('./ownershipHelpers');
 const Restaurant = require('../../models/restaurantModel');
 
@@ -19,25 +22,14 @@ exports.createCategoryValidator = [
     .withMessage('name field is required')
     .isLength({ min: 3, max: 32 })
     .withMessage('must be between 3 and 32 charactres')
-    .custom((val, { req }) => {
-      if (req.body.name) {
-        req.body.slug = slugify(val);
-      }
-      return true;
-    }),
+    .custom(checkDocumentDuplication(Category)),
 
   check('restaurant')
     .notEmpty()
     .withMessage('restaurant id field is required')
     .isMongoId()
     .withMessage('Invalid restaurant id format')
-    .custom(async (val, { req }) => {
-      const restaurant = await checkValueExists(Restaurant, val);
-      if (req.user.role === 'owner') {
-        authorizeActionIfOwner(restaurant, req);
-      }
-      return true;
-    }),
+    .custom(restaurantCustom),
   validatorMiddleware,
 ];
 

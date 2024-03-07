@@ -20,6 +20,8 @@ const getModelDisplayName = (Model) => {
       return 'menu';
     case 'Review':
       return 'review';
+    case 'Coupon':
+      return 'coupon';
     default:
       return 'unknown';
   }
@@ -76,6 +78,14 @@ const checkDocumentDuplication =
     return true;
   };
 
+const restaurantCustom = async (val, { req }) => {
+  const restaurant = await checkValueExists(Restaurant, val);
+  if (req.user.role === 'owner') {
+    authorizeActionIfOwner(restaurant, req);
+  }
+  return true;
+};
+
 module.exports = {
   checkValueExists,
   authorizeActionIfOwner,
@@ -83,4 +93,5 @@ module.exports = {
   checkOwnerItemPermission,
   findByIdOrName,
   checkDocumentDuplication,
+  restaurantCustom,
 };
