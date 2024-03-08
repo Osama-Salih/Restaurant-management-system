@@ -42,6 +42,16 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    addresses: [
+      {
+        id: mongoose.Schema.Types.ObjectId,
+        alias: String,
+        detalis: String,
+        phone: String,
+        city: String,
+        postalCode: String,
+      },
+    ],
   },
   { timestamps: true, strictQuery: true },
 );

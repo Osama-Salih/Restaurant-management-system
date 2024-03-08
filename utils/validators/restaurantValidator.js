@@ -86,6 +86,12 @@ exports.createRestaurantValidator = [
     .custom(ckeckIfuserIsOwner),
 
   check('openingHours').optional(),
+
+  check('deliveryPrice')
+    .notEmpty()
+    .withMessage('Delivery price field required')
+    .isNumeric()
+    .withMessage('Delivery price must be a number'),
   validatorMiddleware,
 ];
 
@@ -134,6 +140,11 @@ exports.updateRestaurantValidator = [
     .optional()
     .isMobilePhone('ar-SA')
     .withMessage('Only accept saudi arabian phone numbers'),
+
+  check('deliveryPrice')
+    .optional()
+    .isNumeric()
+    .withMessage('Delivery price must be a number'),
 
   check('owner')
     .optional()

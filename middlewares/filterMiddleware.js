@@ -31,6 +31,8 @@ exports.filterForOwner = asyncHandler(async (req, res, next) => {
   }
   // @desc Filter for Nested route / filter all items for specific category
   if (req.params.categoryId) paramsFilter = { category: req.params.categoryId };
+  // @desc Allow only user with user role  who created the orders can get it
+  if (req.user.role === 'user') categoryFilter = { user: req.user._id };
 
   req.categoryFilter = categoryFilter;
   req.paramsFilter = paramsFilter;

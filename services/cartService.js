@@ -146,8 +146,10 @@ exports.applyCoupon = asyncHandler(async (req, res, next) => {
   const { totalCartPrice } = cart;
 
   // 3) Calc total price after discount
-  const totalPriceAfterDiscount =
-    totalCartPrice - (totalCartPrice * coupon.discount) / 100;
+  const totalPriceAfterDiscount = (
+    totalCartPrice -
+    (totalCartPrice * coupon.discount) / 100
+  ).toFixed(2);
 
   cart.totalPriceAfterDiscount = totalPriceAfterDiscount;
   // send response to client with message

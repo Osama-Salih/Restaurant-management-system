@@ -22,6 +22,8 @@ const getModelDisplayName = (Model) => {
       return 'review';
     case 'Coupon':
       return 'coupon';
+    case 'Order':
+      return 'order';
     default:
       return 'unknown';
   }

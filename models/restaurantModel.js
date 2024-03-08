@@ -87,6 +87,10 @@ const restaurantSchema = new mongoose.Schema(
         },
       },
     ],
+    deliveryPrice: {
+      type: Number,
+      required: [true, 'A restaurant delivery price required'],
+    },
   },
   {
     timestamps: true,
