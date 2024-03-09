@@ -79,7 +79,7 @@ exports.createCashOrder = asyncHandler(async (req, res) => {
   const cart = await checkValueExists(Cart, req.params.cartId);
 
   // 2) Get restaurant deliveryPrice
-  const restaurant = await await checkValueExists(Restaurant, restaurantId);
+  const restaurant =  await checkValueExists(Restaurant, restaurantId);
 
   // 3) Calc total order price + restaurant deliveryPrice + taxePrice
   const totalOrderPrice = calcTotalOrderPrice(cart, restaurant.deliveryPrice);
@@ -167,15 +167,26 @@ exports.checkoutSession = asyncHandler(async (req, res, next) => {
   const {
     restaurant: { deliveryPrice },
   } = await Category.findById(item.category.toString()).populate('restaurant');
+  console.log(restaurant)
 
   // 4) Calc total order price + restaurant deliveryPrice + taxePrice
   const totalOrderPrice = calcTotalOrderPrice(cart, deliveryPrice);
   const session = await checkoutHelper(req, cart, totalOrderPrice);
   // Send session
-  res.status(200).json({
-    status: 'success',
-    data: session,
-  });
+  // res.status(200).json({
+  //   status: 'success',
+  //   data: session,
+  // });
+});
+
+exports.createCardOrder = async session => {
+  const totalOrderPrice = session.amount_total;
+  const cartId = session.client_reference_id;
+  const deliveryAddress = session.metadata;
+
+  const user = await User.findOne({email: session.customer_email});
+  const cart = await Cart.findById(cartId);
+
 });
 
 exports.checkout = asyncHandler((req, res, next) => {
@@ -194,7 +205,6 @@ exports.checkout = asyncHandler((req, res, next) => {
   }
 
   if (event.type === 'checkout.session.completed') {
-    console.log('create order here');
-    console.log(event.data.object);
+    createCardOrder(event.data.object);
   }
 });
