@@ -12,6 +12,7 @@ const {
   getOrder,
   updateOrderStatusToPay,
   updateOrderStatusToDeliverd,
+  checkoutSession,
 } = require('../services/orderService');
 
 const router = express.Router();
@@ -24,19 +25,25 @@ router.post(
   createCashOrder,
 );
 
-router.get('/', authService.protect, filterForOwner, getAllOrders);
+router.get(
+  '/:cartId',
+  authService.protect,
+  authService.allowedTo('user'),
+  checkoutSession,
+);
 
-router.get('/:id', authService.protect, getOrderValidator, getOrder);
+router.use(authService.protect);
+router.get('/', filterForOwner, getAllOrders);
+
+router.get('/:id', getOrderValidator, getOrder);
 router.patch(
   '/:id/pay',
-  authService.protect,
   authService.allowedTo('owner'),
   updateOrderStatusValidator,
   updateOrderStatusToPay,
 );
 router.patch(
   '/:id/deliver',
-  authService.protect,
   authService.allowedTo('owner'),
   updateOrderStatusValidator,
   updateOrderStatusToDeliverd,
