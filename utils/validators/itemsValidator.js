@@ -34,6 +34,8 @@ exports.createItemValidator = [
     .isNumeric()
     .withMessage('Quantity must be a number'),
 
+  check('sold').optional().isNumeric().withMessage('Sold must be a number'),
+
   check('calories').optional(),
 
   check('description')
@@ -81,6 +83,8 @@ exports.updateItemValidator = [
     .optional()
     .isNumeric()
     .withMessage('Quantity must be a number'),
+
+  check('sold').optional().isNumeric().withMessage('Sold must be a number'),
 
   check('calories').optional(),
 

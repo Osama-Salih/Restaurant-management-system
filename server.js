@@ -10,6 +10,7 @@ const mountRoutes = require('./routes');
 const dbConnection = require('./config/database');
 const ApiError = require('./utils/ApiError');
 const globalErrorHandler = require('./middlewares/errorMiddleware');
+const { checkout } = require('./services/orderService');
 
 dotenv.config({ path: './config.env' });
 
@@ -39,6 +40,7 @@ if (process.env.NODE_ENV === 'development') {
   console.log(process.env.NODE_ENV);
 }
 
+app.post('/webhook', express.raw({ type: 'application/json' }), checkout);
 // Mount Routes
 mountRoutes(app);
 
