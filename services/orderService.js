@@ -187,10 +187,10 @@ exports.checkoutSession = asyncHandler(async (req, res) => {
 const createCardOrder = (session) =>
   asyncHandler(async (req, res) => {
     // Get data from session
-    const totalOrderPrice = session.amount_total;
+    const totalOrderPrice = session.amount_total / 100;
     const cartId = session.client_reference_id;
-    const { deliveryAddress } = session.metadata;
-    const { restaurant } = session.metadata;
+    const deliveryAddress = JSON.parse(session.metadata.deliveryAddress);
+    const restaurant = JSON.parse(session.metadata.restaurant);
 
     const user = await User.findOne({ email: session.customer_email });
     const cart = await Cart.findById(cartId);
@@ -199,8 +199,8 @@ const createCardOrder = (session) =>
     const order = await Order.create({
       user: user._id,
       cartItems: cart.cartItems,
-      deliveryAddress,
       restaurant,
+      deliveryAddress,
       totalOrderPrice,
       paymentMethodPrice: 'cart',
       isPaid: true,
