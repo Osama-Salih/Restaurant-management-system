@@ -12,7 +12,7 @@ const Item = require('../models/itemsModel');
 const User = require('../models/userModel');
 const Order = require('../models/orderModel');
 
-const updateItemSales = async (cartItems, req) => {
+const updateItemSales = async (cartItems, cartId) => {
   const bulkOptions = cartItems.map((id) => ({
     updateOne: {
       filter: {
@@ -29,7 +29,7 @@ const updateItemSales = async (cartItems, req) => {
 
   await Item.bulkWrite(bulkOptions, {});
   // Clear cart based on cartId
-  await Cart.findByIdAndDelete(req.params.cartId);
+  await Cart.findByIdAndDelete(cartId);
 };
 
 const calcTotalOrderPrice = (cart, deliveryPrice) => {
@@ -184,40 +184,32 @@ exports.checkoutSession = asyncHandler(async (req, res) => {
 });
 
 // @desc   Create cart order
-const createCardOrder = (session) =>
-  asyncHandler(async (req, res) => {
-    // Get data from session
-    const totalOrderPrice = session.amount_total / 100;
-    const cartId = session.client_reference_id;
-    const deliveryAddress = JSON.parse(session.metadata.deliveryAddress);
-    const restaurant = JSON.parse(session.metadata.restaurant);
+const createCardOrder = async (session) => {
+  // Get data from session
+  const totalOrderPrice = session.amount_total / 100;
+  const cartId = session.client_reference_id;
+  const deliveryAddress = JSON.parse(session.metadata.deliveryAddress);
+  const restaurant = JSON.parse(session.metadata.restaurant);
 
-    const user = await User.findOne({ email: session.customer_email });
-    const cart = await Cart.findById(cartId);
+  const user = await User.findOne({ email: session.customer_email });
+  const cart = await Cart.findById(cartId);
 
-    // Create cart order
-    const order = await Order.create({
-      user: user._id,
-      cartItems: cart.cartItems,
-      restaurant,
-      deliveryAddress,
-      totalOrderPrice,
-      paymentMethodPrice: 'cart',
-      isPaid: true,
-      PaidAt: Date.now(),
-    });
-    // If order created Update items from cartItems array incerment item sold and decrement item quantity
-    if (order) {
-      updateItemSales(cart.cartItems, req);
-    }
-
-    res.status(200).json({
-      status: 'success',
-      data: {
-        order,
-      },
-    });
+  // Create cart order
+  const order = await Order.create({
+    user: user._id,
+    cartItems: cart.cartItems,
+    restaurant,
+    deliveryAddress,
+    totalOrderPrice,
+    paymentMethodPrice: 'cart',
+    isPaid: true,
+    PaidAt: Date.now(),
   });
+  // If order created Update items from cartItems array incerment item sold and decrement item quantity
+  if (order) {
+    updateItemSales(cart.cartItems, cartId);
+  }
+};
 
 exports.checkout = asyncHandler(async (req, res) => {
   const sig = req.headers['stripe-signature'];
