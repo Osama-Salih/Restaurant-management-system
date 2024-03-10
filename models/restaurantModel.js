@@ -100,6 +100,8 @@ const restaurantSchema = new mongoose.Schema(
   },
 );
 
+restaurantSchema.index({ ratingsAverage: -1, cuisineType: 1 });
+restaurantSchema.index({ slug: 1 });
 restaurantSchema.index({ location: '2dsphere' });
 
 restaurantSchema.virtual('reviews', {

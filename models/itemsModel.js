@@ -48,6 +48,8 @@ const itemSchema = new mongoose.Schema(
   { timestamps: true, strictQuery: true },
 );
 
+itemSchema.index({ slug: 1, price: 1 });
+
 const Item = mongoose.model('Item', itemSchema);
 
 module.exports = Item;

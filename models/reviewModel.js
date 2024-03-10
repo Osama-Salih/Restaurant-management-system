@@ -30,6 +30,8 @@ const reviewSchema = new mongoose.Schema(
   },
 );
 
+reviewSchema.index({ restaurant: 1, user: 1 }, { unique: true });
+
 reviewSchema.statics.calcRatingAvgAndQuantity = async function (resId) {
   const results = await this.aggregate([
     {
