@@ -28,6 +28,11 @@ app.use(compression());
 
 app.use(express.json());
 
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  checkout,
+);
 // Serev a static files form uploads
 app.use(express.static(path.join(__dirname, 'uploads')));
 
@@ -40,11 +45,6 @@ if (process.env.NODE_ENV === 'development') {
   console.log(process.env.NODE_ENV);
 }
 
-app.post(
-  '/webhook-checkout',
-  express.raw({ type: 'application/json' }),
-  checkout,
-);
 // Mount Routes
 mountRoutes(app);
 
