@@ -26,13 +26,12 @@ app.use(cors());
 app.options('*', cors());
 app.use(compression());
 
-app.use(express.json());
-
 app.post(
   '/webhook-checkout',
   express.raw({ type: 'application/json' }),
   checkout,
 );
+app.use(express.json());
 // Serev a static files form uploads
 app.use(express.static(path.join(__dirname, 'uploads')));
 
