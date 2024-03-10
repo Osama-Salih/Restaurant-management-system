@@ -5,7 +5,6 @@ const sendErrorDev = (err, res) => {
     status: err.status,
     error: err,
     message: err.message,
-    stack: err.stack,
   });
 };
 const sendErrorProd = (err, res) => {

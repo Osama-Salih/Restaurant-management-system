@@ -188,8 +188,8 @@ const createCardOrder = async (session) => {
   // Get data from session
   const totalOrderPrice = session.amount_total / 100;
   const cartId = session.client_reference_id;
-  const deliveryAddress = JSON.parse(session.metadata.deliveryAddress);
-  const restaurant = JSON.parse(session.metadata.restaurant);
+  const { deliveryAddress } = session.metadata;
+  const { restaurant } = session.metadata;
 
   const user = await User.findOne({ email: session.customer_email });
   const cart = await Cart.findById(cartId);
