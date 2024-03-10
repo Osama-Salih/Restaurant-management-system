@@ -227,7 +227,7 @@ exports.checkout = asyncHandler(async (req, res) => {
   }
 
   if (event.type === 'checkout.session.completed') {
-    await createCardOrder(event.data.object);
+    createCardOrder(event.data.object);
   }
 
   res.status(200).json({ status: 'received' });
