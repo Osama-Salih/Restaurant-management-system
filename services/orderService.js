@@ -211,7 +211,7 @@ const createCardOrder = async (session) => {
   }
 };
 
-exports.checkout = asyncHandler(async (req, res) => {
+exports.checkout = async (req, res) => {
   const sig = req.headers['stripe-signature'];
 
   let event;
@@ -231,4 +231,4 @@ exports.checkout = asyncHandler(async (req, res) => {
   }
 
   res.status(200).json({ status: 'received' });
-});
+};
