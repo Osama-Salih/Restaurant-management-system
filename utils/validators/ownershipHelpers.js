@@ -24,6 +24,8 @@ const getModelDisplayName = (Model) => {
       return 'coupon';
     case 'Order':
       return 'order';
+    case 'Cart':
+      return 'cart';
     default:
       return 'unknown';
   }
