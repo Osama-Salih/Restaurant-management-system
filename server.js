@@ -5,6 +5,11 @@ const dotenv = require('dotenv');
 const morgan = require('morgan');
 const cors = require('cors');
 const compression = require('compression');
+const rateLimit = require('express-rate-limit');
+const mongoSanitize = require('express-mongo-sanitize');
+const { xss } = require('express-xss-sanitizer');
+const hpp = require('hpp');
+const helmet = require('helmet');
 
 const mountRoutes = require('./routes');
 const dbConnection = require('./config/database');
@@ -31,7 +36,7 @@ app.post(
   express.raw({ type: 'application/json' }),
   checkout,
 );
-app.use(express.json());
+app.use(express.json({ limit: '10kb' }));
 // Serev a static files form uploads
 app.use(express.static(path.join(__dirname, 'uploads')));
 
@@ -43,6 +48,28 @@ if (process.env.NODE_ENV === 'development') {
   morgan('dev');
   console.log(process.env.NODE_ENV);
 }
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+});
+app.use(mongoSanitize());
+
+// Apply the rate limiting middleware to all requests.
+app.use('/api', limiter);
+app.use(xss());
+app.use(helmet());
+app.use(
+  hpp({
+    whitelist: [
+      'price',
+      'ratingsAverage',
+      'ratingsQuantity',
+      'quantity',
+      'calories',
+    ],
+  }),
+);
 
 // Mount Routes
 mountRoutes(app);
